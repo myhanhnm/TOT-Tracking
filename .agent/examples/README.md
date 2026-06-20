@@ -102,6 +102,8 @@ Examples are intentionally:
 
 Pages live in `src/pages/` (**Pages Router only**). Do not use `src/app/` or App Router patterns.
 
+Use `PublicLayout` via `getLayout` for guest/no-auth apps. Use `PrivateLayout` only when the app has authentication.
+
 Pages are:
 
 - route entry points

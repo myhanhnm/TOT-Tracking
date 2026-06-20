@@ -1,0 +1,16 @@
+.nav-row {
+  @apply flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between;
+}
+
+.nav {
+  @apply flex flex-wrap gap-2;
+}
+
+.nav-button {
+  @apply min-w-[6.5rem] rounded-md;
+}
+
+.file-meta {
+  @apply font-mono text-muted;
+  font-variant-numeric: tabular-nums;
+}

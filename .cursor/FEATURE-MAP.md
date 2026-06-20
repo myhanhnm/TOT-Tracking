@@ -20,7 +20,7 @@
 
 | Component | File |
 |-----------|------|
-| `AppShell` | `src/layouts/AppShell/AppShell.tsx` |
+| `PublicLayout` | `src/layouts/PublicLayout/PublicLayout.tsx` |
 
 ## Context
 
@@ -111,7 +111,7 @@ pages/_app.tsx
         └── AppThemeProvider
               └── ActivityProvider
                     └── pages/index.tsx → WorkforceActivity
-                          └── AppShell
+                          └── PublicLayout → WorkforceActivityNav
                                 ├── DashboardFilters (when data loaded)
                                 └── view content
 ```

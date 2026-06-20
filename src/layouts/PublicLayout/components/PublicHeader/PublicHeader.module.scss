@@ -1,0 +1,20 @@
+.header {
+  @apply relative z-10 border-b border-line bg-surface/90 backdrop-blur-sm;
+}
+
+.header-inner {
+  @apply flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between;
+}
+
+.brand-block {
+  @apply flex flex-col gap-1;
+}
+
+.brand {
+  @apply font-semibold tracking-tight text-ink;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  @apply text-muted;
+}

@@ -14,7 +14,7 @@ src/
 ├── pages/                  # Pages Router — _app, _document, index
 ├── providers/              # AppProviders (theme + activity context)
 ├── components/             # Shared UI (EmptyState, LoadingState, ErrorState)
-├── layouts/AppShell/       # App header + nav
+├── layouts/PublicLayout/   # Guest / no-auth app shell (getLayout)
 ├── modules/WorkforceActivity/  # Entire MVP feature
 ├── shared/constants/       # Minimal shared constants
 ├── styles/                 # Global SCSS + Tailwind entry

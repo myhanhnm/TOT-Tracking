@@ -17,7 +17,14 @@ It teaches:
 
 # Core Philosophy
 
-Layouts are app shell wrappers.
+Layouts are app shell wrappers named **`PublicLayout`** and **`PrivateLayout`** (plus optional **`AdminLayout`**).
+
+| Authentication | Layouts |
+|----------------|---------|
+| Yes | `PublicLayout` + `PrivateLayout` |
+| No | `PublicLayout` only — remove / do not create `PrivateLayout` |
+
+Do not use custom shell names (`AppShell`, `DashboardLayout`, etc.) as substitutes.
 
 They own:
 

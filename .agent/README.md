@@ -34,6 +34,17 @@ See `.agent/MASTER_TEMPLATE.md` §3.2.1 and `.cursor/rules/nextjs-pages.mdc`.
 
 ---
 
+# Layouts (mandatory)
+
+| App type | Use |
+|----------|-----|
+| With auth | `PublicLayout` (guest) + `PrivateLayout` (signed-in) |
+| Without auth | `PublicLayout` only — no `PrivateLayout` |
+
+Attach via `Page.getLayout`. Do not use `AppShell` or other custom primary shells.
+
+---
+
 # Usage
 
 Before using any prompt:
@@ -102,6 +113,7 @@ Prompts should:
 AI agents must:
 
 - use **Pages Router only** — never `src/app/` or App Router patterns
+- use **`PublicLayout` / `PrivateLayout`** — never custom shells like `AppShell`; no-auth apps use `PublicLayout` only
 - keep pages thin
 - keep feature logic inside modules
 - use `src/` imports

@@ -32,7 +32,7 @@ UI components (no business logic in components)
 | Document | `src/pages/_document.tsx` | HTML shell, hydration warnings |
 | App shell | `src/pages/_app.tsx` | Global styles, fonts, Head, providers |
 | Providers | `src/providers/AppProviders.tsx` | `AppThemeProvider` + `ActivityProvider` |
-| Shell | `src/layouts/AppShell/` | Header nav, file name meta |
+| Shell | `src/layouts/PublicLayout/` | App header; feature nav in module |
 | Module root | `src/modules/WorkforceActivity/WorkforceActivity.tsx` | View switching + global filters |
 | Components | `.../components/` | Presentational UI only |
 | Hooks | `.../hooks/` | Orchestration, context access |

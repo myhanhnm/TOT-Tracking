@@ -41,7 +41,7 @@ Single feature module: `src/modules/WorkforceActivity/`
 ## App entry
 
 ```txt
-src/pages/index.tsx → WorkforceActivity → AppShell + DashboardFilters + view content
+src/pages/index.tsx → PublicLayout (getLayout) → WorkforceActivity → WorkforceActivityNav + DashboardFilters + view content
 ```
 
 Single route `/`. Views: `upload` | `dashboard` | `associate` (client state, not URL).

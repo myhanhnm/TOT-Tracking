@@ -125,6 +125,32 @@ This project uses **Next.js Pages Router**. App Router is **forbidden**.
 
 ---
 
+## 3.2.2 Layout — PublicLayout / PrivateLayout (mandatory)
+
+Every application uses standardized layouts in `src/layouts/`. Do not invent alternate shell names (e.g. `AppShell`, `DashboardLayout` as primary wrappers).
+
+| App type | Layouts |
+|----------|---------|
+| With authentication | `PublicLayout` (guest) + `PrivateLayout` (authenticated) |
+| Without authentication | `PublicLayout` only — **no** `PrivateLayout` |
+
+### Rules
+
+- Attach layouts on pages via `Page.getLayout`, not inside feature modules
+- `_app.tsx` must call `Component.getLayout` when present
+- `PublicLayout` — landing, login, register, and all routes when there is no auth
+- `PrivateLayout` — authenticated routes only; redirect guests to login
+- Layouts own shell structure (header, footer, sidebar, guards) — not feature business logic
+- Feature-specific navigation/toolbars belong in `src/modules/<Feature>/components/`
+
+### Forbidden
+
+- Custom app shell layouts outside `PublicLayout` / `PrivateLayout` / optional `AdminLayout`
+- Wrapping pages with layout components inside module roots
+- `PrivateLayout` in apps with no authentication flow
+
+---
+
 ## 3.3 API flow
 
 All API calls must follow this flow:

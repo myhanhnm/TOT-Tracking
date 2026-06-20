@@ -3,8 +3,7 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 
-import { AppShell } from 'src/layouts/AppShell';
-
+import { WorkforceActivityNav } from './components/WorkforceActivityNav';
 import { DashboardFilters } from './components';
 import { ACTIVITY_VIEWS } from './constants/view.constants';
 import { useActivityContext } from './context';
@@ -32,11 +31,10 @@ export function WorkforceActivity(): React.ReactElement {
     analysis !== null && filterOptions !== null && view !== ACTIVITY_VIEWS.UPLOAD;
 
   return (
-    <AppShell>
-      <Box className={classes['content-stack']}>
-        {showFilters ? <DashboardFilters filterOptions={filterOptions} /> : null}
-        {content}
-      </Box>
-    </AppShell>
+    <Box className={classes['content-stack']}>
+      <WorkforceActivityNav />
+      {showFilters ? <DashboardFilters filterOptions={filterOptions} /> : null}
+      {content}
+    </Box>
   );
 }

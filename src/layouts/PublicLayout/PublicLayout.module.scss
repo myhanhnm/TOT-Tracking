@@ -1,0 +1,14 @@
+.layout {
+  @apply relative min-h-[100dvh] bg-canvas text-ink;
+}
+
+.ambient {
+  @apply pointer-events-none fixed inset-0 z-0;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(17, 17, 17, 0.03), transparent 42%),
+    radial-gradient(circle at 88% 0%, rgba(31, 108, 159, 0.04), transparent 36%);
+}
+
+.main {
+  @apply relative z-10 flex flex-col gap-6 py-8 md:py-10;
+}

@@ -784,6 +784,7 @@ When applying this template to a specific repo, generate a repo-specific doc wit
 | Topic | This repo |
 |-------|-----------|
 | Routing | **Pages Router only** — `src/pages/`, no `src/app/` |
+| Layouts | `PublicLayout` only (no auth, no `PrivateLayout`) |
 | API layer | Not used — client-side CSV analysis only |
 | Auth | Not used |
 | Entry | `src/pages/index.tsx` → `WorkforceActivity` module |

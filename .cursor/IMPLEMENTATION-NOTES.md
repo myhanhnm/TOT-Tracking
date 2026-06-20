@@ -78,7 +78,7 @@ Boilerplate remnants (safe to delete in cleanup):
 
 - `src/pages/`, `src/configs/`, `src/context/UserContext.tsx`
 - `src/modules/Users/`, `Home/`, `Introduction/`
-- `src/layouts/DashboardLayout/`, `PrivateLayout/`, `PublicLayout/`
+- `src/layouts/PublicLayout/` only (no auth — no `PrivateLayout`)
 - `MetricsCards`, `ActivityCharts` — superseded but may still be exported
 
 Active app uses paths listed in `FEATURE-MAP.md`.

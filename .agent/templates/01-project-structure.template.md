@@ -367,17 +367,26 @@ Feature-specific hooks must stay inside their module.
 
 ## 3.8 `src/layouts`
 
-Contains reusable page layouts.
-
-Example:
+Contains reusable page layouts. Use **only** the standard layout names below.
 
 ```txt
 src/layouts/
-├── PublicLayout/
-├── PrivateLayout/
-├── AdminLayout/
+├── PublicLayout/      # guest / unauthenticated / no-auth apps
+├── PrivateLayout/     # authenticated users (omit if no auth)
+├── AdminLayout/       # optional — role-protected admin shell
 └── index.ts
 ```
+
+### Layout selection
+
+| App has authentication? | Layouts to include |
+|-------------------------|-------------------|
+| Yes | `PublicLayout` + `PrivateLayout` (+ `AdminLayout` if needed) |
+| No | `PublicLayout` only — **do not** add `PrivateLayout` |
+
+Pages attach layouts via `Page.getLayout`. `_app.tsx` must support the `getLayout` pattern.
+
+Do **not** create alternate primary shells (`AppShell`, `DashboardLayout`, etc.) instead of `PublicLayout` / `PrivateLayout`.
 
 Use this folder for:
 
@@ -400,6 +409,7 @@ Layouts must not:
 - contain feature business logic
 - call APIs directly
 - own module state
+- wrap feature modules internally (use `getLayout` on the page instead)
 
 ---
 
