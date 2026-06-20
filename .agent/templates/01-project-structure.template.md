@@ -33,6 +33,21 @@ The project must always be responsive and mobile-friendly by default.
 
 ---
 
+## 1.1 Routing — Pages Router ONLY (mandatory)
+
+This boilerplate uses **Next.js Pages Router**. App Router is **forbidden**.
+
+| Required | Forbidden |
+|----------|-----------|
+| `src/pages/` | `src/app/` |
+| `_app.tsx`, `_document.tsx` | `app/layout.tsx`, `app/page.tsx` |
+| `Page.getLayout` | App Router layouts, route groups |
+| `next/head` | `metadata` / `generateMetadata` exports |
+
+Do not create `src/app/` or migrate to App Router unless explicitly requested.
+
+---
+
 # 2. Top-Level Structure
 
 Expected structure:
@@ -390,7 +405,7 @@ Layouts must not:
 
 ## 3.9 `src/pages`
 
-Contains Next.js Pages Router files.
+Contains **Next.js Pages Router** files only. Do not use `src/app/` or App Router conventions.
 
 Pages should be thin wrappers.
 

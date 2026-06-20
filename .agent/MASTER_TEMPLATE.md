@@ -5,7 +5,7 @@ This folder is the source of truth for how this boilerplate should be used, exte
 Before making any implementation, the AI agent must:
 
 1. Read this `MASTER_TEMPLATE.md`
-2. Read the relevant files inside `.ai/templates`
+2. Read the relevant files inside `.agent/templates`
 3. Inspect the existing codebase patterns before introducing new patterns
 
 ---
@@ -30,8 +30,8 @@ Every new feature should feel like it belongs to the same codebase.
 When making decisions, follow this order strictly:
 
 1. Existing codebase conventions
-2. Rules inside `.ai/templates`
-3. Existing examples inside `.ai/examples`
+2. Rules inside `.agent/templates`
+3. Existing examples inside `.agent/examples`
 4. General best practices
 
 Do not introduce a new architecture unless explicitly requested.
@@ -92,6 +92,36 @@ export default function BooksPage() {
   return <Books/>;
 }
 ```
+
+---
+
+## 3.2.1 Routing — Pages Router ONLY (mandatory)
+
+This project uses **Next.js Pages Router**. App Router is **forbidden**.
+
+### Required
+
+| Artifact | Location |
+|----------|----------|
+| Routes | `src/pages/` |
+| App wrapper | `src/pages/_app.tsx` |
+| Document shell | `src/pages/_document.tsx` |
+| Providers | `src/providers/` (imported from `_app.tsx`) |
+| Layout attachment | `Page.getLayout` on the page component |
+
+### Forbidden — do NOT create or use
+
+- `src/app/` directory
+- `app/layout.tsx`, `app/page.tsx`, route groups, or parallel routes
+- App Router `metadata` / `generateMetadata` exports
+- React Server Components as route entries
+- `loading.tsx`, `error.tsx`, `template.tsx` (App Router conventions)
+
+### TOT-Tracking (this repo)
+
+- **Single route:** `src/pages/index.tsx` → `<WorkforceActivity />`
+- View switching (`upload` \| `dashboard` \| `associate`) is **client state** in `ActivityContext`, not URL routes
+- Do not add `src/app/` or migrate to App Router unless explicitly requested
 
 ---
 
@@ -396,6 +426,7 @@ Do NOT:
 
 - Call APIs directly inside components/pages
 - Put business logic inside pages
+- Use App Router (`src/app/`, `layout.tsx`, `page.tsx` as route files)
 - Create one-off HTTP clients
 - Create duplicate hooks/utilities
 - Hardcode API paths

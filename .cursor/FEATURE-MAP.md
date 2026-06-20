@@ -4,7 +4,7 @@
 
 | File | Role |
 |------|------|
-| `src/app/page.tsx` | Renders `WorkforceActivity` |
+| `src/pages/index.tsx` | Renders `WorkforceActivity` |
 | `src/modules/WorkforceActivity/WorkforceActivity.tsx` | View router + global filters |
 | `src/modules/WorkforceActivity/index.ts` | Exports `WorkforceActivity` only |
 
@@ -106,11 +106,11 @@ Context exposes: `analysis`, `filteredAnalysis`, `filters`, `filterOptions`, `sc
 ## Providers chain
 
 ```txt
-layout.tsx
-  └── AppProviders (providers.tsx)
+pages/_app.tsx
+  └── AppProviders (src/providers/AppProviders.tsx)
         └── AppThemeProvider
               └── ActivityProvider
-                    └── page → WorkforceActivity
+                    └── pages/index.tsx → WorkforceActivity
                           └── AppShell
                                 ├── DashboardFilters (when data loaded)
                                 └── view content

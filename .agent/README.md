@@ -19,6 +19,21 @@ The goal is to standardize:
 
 ---
 
+# Routing (mandatory)
+
+This project uses **Next.js Pages Router only**.
+
+| Use | Do not use |
+|-----|------------|
+| `src/pages/` | `src/app/` |
+| `_app.tsx`, `_document.tsx` | `app/layout.tsx`, `app/page.tsx` |
+| `Page.getLayout` | App Router layouts |
+| `next/head` in `_app` or pages | `metadata` exports |
+
+See `.agent/MASTER_TEMPLATE.md` §3.2.1 and `.cursor/rules/nextjs-pages.mdc`.
+
+---
+
 # Usage
 
 Before using any prompt:
@@ -26,7 +41,7 @@ Before using any prompt:
 1. Read all files inside:
 
 ```txt
-.ai/templates/
+.agent/templates/
 ```
 
 2. Follow existing architecture first.
@@ -60,7 +75,7 @@ Prompts should:
 # Recommended Prompt Flow
 
 ```txt
-1. Read .ai/templates/*
+1. Read .agent/templates/*
 2. Read related existing feature/module
 3. Reuse existing patterns
 4. Generate minimal consistent implementation
@@ -86,6 +101,7 @@ Prompts should:
 
 AI agents must:
 
+- use **Pages Router only** — never `src/app/` or App Router patterns
 - keep pages thin
 - keep feature logic inside modules
 - use `src/` imports

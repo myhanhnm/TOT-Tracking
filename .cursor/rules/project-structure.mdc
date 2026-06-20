@@ -11,7 +11,8 @@ Full reference: `.cursor/ARCHITECTURE.md`, `.cursor/FEATURE-MAP.md`
 
 ```txt
 src/
-├── app/                    # App Router — layout, page, providers
+├── pages/                  # Pages Router — _app, _document, index
+├── providers/              # AppProviders (theme + activity context)
 ├── components/             # Shared UI (EmptyState, LoadingState, ErrorState)
 ├── layouts/AppShell/       # App header + nav
 ├── modules/WorkforceActivity/  # Entire MVP feature

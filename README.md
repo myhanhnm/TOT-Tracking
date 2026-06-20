@@ -48,7 +48,7 @@ This MVP answers five daily supervisor questions:
 
 | Layer | Technology |
 |-------|------------|
-| Framework | [Next.js 16](https://nextjs.org/) (App Router) |
+| Framework | [Next.js 16](https://nextjs.org/) (Pages Router) |
 | Language | TypeScript (strict) |
 | UI | [MUI v7](https://mui.com/) + [Tailwind CSS](https://tailwindcss.com/) + SCSS modules |
 | Charts | [Recharts](https://recharts.org/) |
@@ -184,7 +184,7 @@ vercel --prod
 
 ### Deployment notes
 
-- **Static + SSR:** The app uses the App Router; Vercel handles Next.js builds natively
+- **Static + SSR:** The app uses the Pages Router; Vercel handles Next.js builds natively
 - **No API routes** — Entire MVP runs client-side after the initial page load
 - **No secrets** — Do not add API keys unless you introduce a backend
 - **Node version:** Vercel uses Node 20.x by default; compatible with Next.js 16
@@ -200,7 +200,8 @@ vercel --prod
 
 ```txt
 src/
-├── app/                          # Next.js App Router (layout, page, providers)
+├── pages/                        # Pages Router (_app, _document, index)
+├── providers/                    # AppProviders (theme + activity context)
 ├── components/                   # Shared UI (EmptyState, LoadingState, ErrorState)
 ├── layouts/AppShell/             # App header and navigation
 ├── modules/WorkforceActivity/    # Entire MVP feature module

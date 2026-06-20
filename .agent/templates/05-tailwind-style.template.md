@@ -82,9 +82,11 @@ project-root/
 │   └── pages/
 ```
 
-This boilerplate uses the Next.js Pages Router.
+This boilerplate uses the **Next.js Pages Router only**.
 
-Do not use `app/` structure unless the project explicitly migrates to App Router.
+**Forbidden:** `src/app/`, `app/layout.tsx`, `app/page.tsx`, App Router route groups, `metadata` exports, and server-component route entries.
+
+Do not introduce App Router structure under any circumstance unless the project owner explicitly requests a migration.
 
 ---
 

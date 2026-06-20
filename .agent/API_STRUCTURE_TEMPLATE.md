@@ -52,7 +52,7 @@ Backend API
 | Models/types   | `<root>/modules/<Feature>/models/`                | Request/response/UI types                               |
 | Hooks          | `<root>/modules/<Feature>/hooks/`                 | React Query wrappers; side effects (toasts, callbacks)  |
 | UI             | `<root>/modules/<Feature>/`, `<root>/components/` | Render UI; orchestrate hooks only                       |
-| Pages/routes   | `<root>/pages/` or `app/`                         | Thin wrappers; delegate to modules                      |
+| Pages/routes   | `<root>/pages/` only (**Pages Router**)            | Thin wrappers; delegate to modules                      |
 
 ### 1.3 Core rules
 
@@ -776,3 +776,16 @@ When applying this template to a specific repo, generate a repo-specific doc wit
 6. **Feature modules** — per feature: hooks, which API functions they call
 7. **Hook conventions** — naming, queryKey patterns, on-demand fetch rules
 8. **Adaptation notes** — deviations from this template
+
+---
+
+## 14. Adaptation notes (TOT-Tracking)
+
+| Topic | This repo |
+|-------|-----------|
+| Routing | **Pages Router only** — `src/pages/`, no `src/app/` |
+| API layer | Not used — client-side CSV analysis only |
+| Auth | Not used |
+| Entry | `src/pages/index.tsx` → `WorkforceActivity` module |
+| Providers | `src/providers/AppProviders.tsx` via `_app.tsx` |
+

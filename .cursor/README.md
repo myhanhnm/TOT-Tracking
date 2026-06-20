@@ -20,7 +20,7 @@ Active rules live in `.cursor/rules/`:
 |------|---------|
 | `core-architecture.mdc` | Module-first architecture, separation of concerns |
 | `project-structure.mdc` | Folder ownership |
-| `nextjs-app.mdc` | App Router, single-page SPA |
+| `nextjs-pages.mdc` | Pages Router, single-page SPA |
 | `workforce-activity.mdc` | Module-specific business + extension rules |
 | `styling.mdc` | MUI + Tailwind + SCSS modules |
 | `code-style.mdc` | TypeScript, imports, naming |

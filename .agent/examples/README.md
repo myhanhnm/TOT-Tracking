@@ -18,7 +18,7 @@ understand how the architecture should be implemented in practice.
 Templates inside:
 
 ```txt
-.ai/templates/
+.agent/templates/
 ```
 
 define:
@@ -30,7 +30,7 @@ define:
 Examples inside:
 
 ```txt
-.ai/examples/
+.agent/examples/
 ```
 
 demonstrate:
@@ -99,6 +99,8 @@ Examples are intentionally:
 # Architecture Ownership Reminder
 
 ## Pages
+
+Pages live in `src/pages/` (**Pages Router only**). Do not use `src/app/` or App Router patterns.
 
 Pages are:
 
@@ -174,6 +176,7 @@ Examples should include:
 
 Examples should demonstrate:
 
+- **Pages Router only** (`src/pages/`, never `src/app/`)
 - thin pages
 - feature ownership
 - reusable shared UI
@@ -191,7 +194,7 @@ Examples should demonstrate:
 Recommended AI workflow:
 
 ```txt
-1. Read .ai/templates/*
+1. Read .agent/templates/*
 2. Read relevant examples
 3. Inspect existing project structure
 4. Reuse existing patterns
@@ -236,7 +239,7 @@ Examples are NOT:
 
 All examples must remain aligned with:
 
-- `.ai/templates/`
+- `.agent/templates/`
 - current project conventions
 - current engineering standards
 

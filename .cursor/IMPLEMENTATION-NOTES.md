@@ -62,7 +62,7 @@ Associate detail uses `loginId` in context, not URL params. Deep-linking to an a
 
 ### Hydration warning fix
 
-Browser extensions inject attributes on `<body>`. Fixed with `suppressHydrationWarning` on `<html>` and `<body>` in `src/app/layout.tsx`.
+Browser extensions inject attributes on `<body>`. Fixed with `suppressHydrationWarning` on `<html>` and `<body>` in `src/pages/_document.tsx`.
 
 ### SCSS + Tailwind class naming
 

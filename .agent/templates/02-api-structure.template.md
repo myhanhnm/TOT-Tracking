@@ -939,6 +939,8 @@ export function useCreateBookForm() {
 
 # 27. Page and Component Rules
 
+Pages live in `src/pages/` (**Pages Router only**). Do not use `src/app/` or App Router route files.
+
 Pages must not call:
 
 - API clients

@@ -1,4 +1,4 @@
-Read all files inside `.ai/templates/`.
+Read all files inside `.agent/templates/`.
 
 Refactor the target feature to align with the current boilerplate architecture.
 
@@ -35,6 +35,7 @@ Refactor toward:
 Do NOT:
 
 - introduce new architecture patterns
+- migrate to App Router or add `src/app/`
 - over-engineer abstractions
 - break existing UX
 - move feature-specific UI into global shared components unnecessarily

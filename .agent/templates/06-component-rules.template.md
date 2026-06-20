@@ -33,7 +33,7 @@ Feature composition
     ↓
 Module screen
     ↓
-Page route
+Page route (src/pages/ — Pages Router only)
 ```
 
 The goal is:

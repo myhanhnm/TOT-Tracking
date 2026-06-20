@@ -12,7 +12,7 @@ Supervisor-focused dashboard that analyzes warehouse associate scan activity fro
 
 | Layer | Choice |
 |-------|--------|
-| Framework | Next.js 16 App Router |
+| Framework | Next.js 16 Pages Router |
 | Language | TypeScript (strict) |
 | UI | MUI v7 + Tailwind CSS + SCSS modules |
 | Charts | Recharts |
@@ -23,7 +23,7 @@ Supervisor-focused dashboard that analyzes warehouse associate scan activity fro
 
 ## Single-page application
 
-- **One route:** `/` (`src/app/page.tsx`)
+- **One route:** `/` (`src/pages/index.tsx`)
 - **Three client views** (no URL routing): Upload → Dashboard → Associate Detail
 - View state in `ActivityContext` (`upload` | `dashboard` | `associate`)
 
@@ -53,7 +53,7 @@ This project was stripped down from a Next.js MUI boilerplate:
 - No Users/Home/Introduction modules
 - No `src/configs/request.ts`, `src/context/UserContext`
 
-Legacy files may still exist on disk in some branches — **ignore them**. Active code is under `src/app/` and `src/modules/WorkforceActivity/`.
+Active code is under `src/pages/` and `src/modules/WorkforceActivity/`.
 
 ## Dependencies (runtime)
 

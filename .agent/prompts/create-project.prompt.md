@@ -1,7 +1,7 @@
 Read all files inside:
 
 ```txt
-.ai/templates/
+.agent/templates/
 ```
 
 Then act as a senior frontend engineer and architect.
@@ -41,7 +41,7 @@ The generated project must:
 The project MUST follow ALL conventions inside:
 
 ```txt
-.ai/templates/
+.agent/templates/
 ```
 
 including:
@@ -204,10 +204,9 @@ Use:
 
 Do NOT use:
 
-- App Router
-- layout.tsx
-- page.tsx
-- server components
+- App Router or `src/app/`
+- `app/layout.tsx`, `app/page.tsx` (App Router route files)
+- server components as route entries
 
 ---
 

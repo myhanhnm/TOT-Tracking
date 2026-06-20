@@ -2,7 +2,7 @@
 
 Start here: [README.md](./README.md)
 
-This project is a **client-side Workforce Activity Analytics** supervisor dashboard. No auth, no API, single App Router page.
+This project is a **client-side Workforce Activity Analytics** supervisor dashboard. No auth, no API, single Pages Router page.
 
 **Before coding:** read `BUSINESS-RULES.md` and `ARCHITECTURE.md`.
 

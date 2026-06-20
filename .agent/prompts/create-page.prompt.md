@@ -1,6 +1,6 @@
-Read all files inside `.ai/templates/`.
+Read all files inside `.agent/templates/`.
 
-Generate a new page route.
+Generate a new page route in `src/pages/` (Pages Router only).
 
 Requirements:
 
@@ -34,5 +34,5 @@ Use:
 Do NOT:
 
 - introduce App Router patterns
-- use layout.tsx/page.tsx
+- create `src/app/` or use `layout.tsx`/`page.tsx` as route files
 - create giant pages

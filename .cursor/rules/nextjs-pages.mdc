@@ -1,15 +1,39 @@
 ---
-description: DEPRECATED — this project uses App Router only
+description: Next.js Pages Router — single-page Workforce Activity app
 globs: src/pages/**/*
 alwaysApply: false
 ---
 
-# Pages Router — NOT USED
+# Pages Router conventions
 
-This project was migrated to **App Router** with a single route at `/`.
+Full reference: `.cursor/PROJECT-OVERVIEW.md`
 
-- Active routing: `src/app/`
-- See `.cursor/rules/nextjs-app.mdc`
-- Do not add or extend `src/pages/`
+This project uses **Pages Router** — one route at `/`.
 
-Legacy `src/pages/` files may exist on disk — ignore them.
+## Entry files
+
+| File | Role |
+|------|------|
+| `src/pages/_document.tsx` | HTML shell, `suppressHydrationWarning` on `<html>` / `<body>` |
+| `src/pages/_app.tsx` | Global styles, fonts, `Head`, `AppProviders` |
+| `src/pages/index.tsx` | Thin wrapper → `<WorkforceActivity />` |
+
+## Providers (`src/providers/AppProviders.tsx`)
+
+Client component:
+
+```txt
+AppThemeProvider → ActivityProvider → children
+```
+
+## Rules
+
+- Pages stay thin — render feature module root only
+- View switching happens inside `WorkforceActivity` via context (not URL routes)
+- Mark client boundaries with `'use client'` on components using hooks/context
+
+## Do NOT
+
+- Add `src/app/` (App Router) — conflicts with Pages Router
+- Put business logic in `_app.tsx` or `index.tsx`
+- Fetch from APIs in page files

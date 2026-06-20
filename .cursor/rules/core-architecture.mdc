@@ -41,7 +41,7 @@ Single feature module: `src/modules/WorkforceActivity/`
 ## App entry
 
 ```txt
-src/app/page.tsx → WorkforceActivity → AppShell + DashboardFilters + view content
+src/pages/index.tsx → WorkforceActivity → AppShell + DashboardFilters + view content
 ```
 
 Single route `/`. Views: `upload` | `dashboard` | `associate` (client state, not URL).
@@ -49,7 +49,7 @@ Single route `/`. Views: `upload` | `dashboard` | `associate` (client state, not
 ## Do NOT
 
 - Add API clients or auth unless explicitly requested
-- Put business logic in components or `src/app/page.tsx`
+- Put business logic in components or `src/pages/index.tsx`
 - Use `@/` imports (use `src/`)
 - Call services directly from components (use hooks)
 - Read raw `analysis` in feature hooks (use `filteredAnalysis`)

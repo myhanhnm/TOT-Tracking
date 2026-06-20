@@ -28,9 +28,10 @@ UI components (no business logic in components)
 
 | Layer | Location | Responsibility |
 |-------|----------|----------------|
-| Route | `src/app/page.tsx` | Thin wrapper → `<WorkforceActivity />` |
-| Layout | `src/app/layout.tsx` | HTML shell, fonts, global styles, providers |
-| Providers | `src/app/providers.tsx` | `AppThemeProvider` + `ActivityProvider` |
+| Route | `src/pages/index.tsx` | Thin wrapper → `<WorkforceActivity />` |
+| Document | `src/pages/_document.tsx` | HTML shell, hydration warnings |
+| App shell | `src/pages/_app.tsx` | Global styles, fonts, Head, providers |
+| Providers | `src/providers/AppProviders.tsx` | `AppThemeProvider` + `ActivityProvider` |
 | Shell | `src/layouts/AppShell/` | Header nav, file name meta |
 | Module root | `src/modules/WorkforceActivity/WorkforceActivity.tsx` | View switching + global filters |
 | Components | `.../components/` | Presentational UI only |
@@ -110,9 +111,9 @@ Schedule blocks resolved per unique calendar date in the timeline, then clipped 
 
 | File | Type | Reason |
 |------|------|--------|
-| `src/app/layout.tsx` | Server | Metadata, font loading |
-| `src/app/page.tsx` | Server | Thin wrapper |
-| `src/app/providers.tsx` | Client | Context providers |
+| `src/pages/_document.tsx` | Server | HTML document, hydration fix |
+| `src/pages/_app.tsx` | Client | Global styles, fonts, providers |
+| `src/pages/index.tsx` | Server | Thin wrapper |
 | `WorkforceActivity.tsx` | Client | Context, view state |
 | Most module components | Client | Interactivity, MUI hooks |
 

@@ -143,7 +143,7 @@ import { OFF_TASK_GAP_THRESHOLD_MS } from 'src/modules/WorkforceActivity/constan
 ## Provider stack
 
 ```tsx
-// src/app/providers.tsx
+// src/providers/AppProviders.tsx
 <AppThemeProvider>
   <ActivityProvider>{children}</ActivityProvider>
 </AppThemeProvider>
