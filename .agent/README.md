@@ -41,7 +41,9 @@ See `.agent/MASTER_TEMPLATE.md` §3.2.1 and `.cursor/rules/nextjs-pages.mdc`.
 | With auth | `PublicLayout` (guest) + `PrivateLayout` (signed-in) |
 | Without auth | `PublicLayout` only — no `PrivateLayout` |
 
-Attach via `Page.getLayout`. Do not use `AppShell` or other custom primary shells.
+Attach via `Page.getLayout`.
+
+Each `src/layouts/<Layout>/` folder has **exactly 3 files** (`Layout.tsx`, `Layout.module.scss`, `index.ts`). Header, footer, and sidebar chrome belong in `src/components/` — not nested under layouts.
 
 ---
 
@@ -114,6 +116,7 @@ AI agents must:
 
 - use **Pages Router only** — never `src/app/` or App Router patterns
 - use **`PublicLayout` / `PrivateLayout`** — never custom shells like `AppShell`; no-auth apps use `PublicLayout` only
+- keep layout folders to **3 files**; put `PublicHeader` and similar chrome in `src/components/`
 - keep pages thin
 - keep feature logic inside modules
 - use `src/` imports

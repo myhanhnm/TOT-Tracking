@@ -13,8 +13,8 @@ Full reference: `.cursor/ARCHITECTURE.md`, `.cursor/FEATURE-MAP.md`
 src/
 ├── pages/                  # Pages Router — _app, _document, index
 ├── providers/              # AppProviders (theme + activity context)
-├── components/             # Shared UI (EmptyState, LoadingState, ErrorState)
-├── layouts/PublicLayout/   # Guest / no-auth app shell (getLayout)
+├── components/             # Shared UI (EmptyState, LoadingState, ErrorState, PublicHeader)
+├── layouts/PublicLayout/   # 3 files only — shell via getLayout
 ├── modules/WorkforceActivity/  # Entire MVP feature
 ├── shared/constants/       # Minimal shared constants
 ├── styles/                 # Global SCSS + Tailwind entry

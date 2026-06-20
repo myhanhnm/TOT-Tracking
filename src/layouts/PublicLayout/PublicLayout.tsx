@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Box, Container } from '@mui/material';
 
-import { PublicHeader } from './components/PublicHeader';
+import { PublicHeader } from 'src/components/PublicHeader';
 
 import classes from './PublicLayout.module.scss';
 

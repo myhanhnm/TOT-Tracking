@@ -138,14 +138,17 @@ Every application uses standardized layouts in `src/layouts/`. Do not invent alt
 
 - Attach layouts on pages via `Page.getLayout`, not inside feature modules
 - `_app.tsx` must call `Component.getLayout` when present
+- Each layout folder has **exactly 3 files**: `<Layout>.tsx`, `<Layout>.module.scss`, `index.ts`
+- Header, footer, sidebar, nav chrome live in `src/components/` — not inside `src/layouts/`
 - `PublicLayout` — landing, login, register, and all routes when there is no auth
 - `PrivateLayout` — authenticated routes only; redirect guests to login
-- Layouts own shell structure (header, footer, sidebar, guards) — not feature business logic
+- Layouts compose shared chrome from `src/components/` — not feature business logic
 - Feature-specific navigation/toolbars belong in `src/modules/<Feature>/components/`
 
 ### Forbidden
 
 - Custom app shell layouts outside `PublicLayout` / `PrivateLayout` / optional `AdminLayout`
+- Nested `components/` folders inside `src/layouts/<Layout>/`
 - Wrapping pages with layout components inside module roots
 - `PrivateLayout` in apps with no authentication flow
 

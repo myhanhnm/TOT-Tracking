@@ -203,7 +203,8 @@ src/
 ├── pages/                        # Pages Router (_app, _document, index)
 ├── providers/                    # AppProviders (theme + activity context)
 ├── components/                   # Shared UI (EmptyState, LoadingState, ErrorState)
-├── layouts/PublicLayout/         # App shell (no auth — PublicLayout only)
+├── layouts/PublicLayout/         # 3 files: shell only (no nested components/)
+├── components/PublicHeader/      # Layout chrome
 ├── modules/WorkforceActivity/    # Entire MVP feature module
 │   ├── components/               # Dashboard, timeline, filters, charts, tables
 │   ├── hooks/                    # useCsvUpload, useFilteredAnalysis, etc.

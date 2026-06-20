@@ -388,6 +388,19 @@ Pages attach layouts via `Page.getLayout`. `_app.tsx` must support the `getLayou
 
 Do **not** create alternate primary shells (`AppShell`, `DashboardLayout`, etc.) instead of `PublicLayout` / `PrivateLayout`.
 
+Each layout folder contains **exactly 3 files**:
+
+```txt
+src/layouts/PublicLayout/
+├── PublicLayout.tsx
+├── PublicLayout.module.scss
+└── index.ts
+```
+
+Do **not** nest `components/` inside `src/layouts/<Layout>/`. Header, footer, sidebar, and nav chrome belong in `src/components/` (e.g. `PublicHeader`, `PrivateSidebar`).
+
+Layouts compose shared components from `src/components/`; they do not own sub-component folders.
+
 Use this folder for:
 
 - public site layout
@@ -398,11 +411,7 @@ Use this folder for:
 
 Layouts may contain:
 
-- header
-- footer
-- sidebar
-- navigation
-- layout-level responsive behavior
+- layout shell structure and composition only
 
 Layouts must not:
 
@@ -410,6 +419,9 @@ Layouts must not:
 - call APIs directly
 - own module state
 - wrap feature modules internally (use `getLayout` on the page instead)
+- include nested `components/` folders — put `PublicHeader`, `PrivateSidebar`, etc. in `src/components/`
+
+Header, footer, sidebar, and navigation UI live in `src/components/`, not under `src/layouts/`.
 
 ---
 
