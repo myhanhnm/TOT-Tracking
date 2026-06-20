@@ -102,7 +102,7 @@ Open [http://localhost:3000](http://localhost:3000).
 Upload the included sample file:
 
 ```txt
-sample-data/workforce-activity-sample.csv
+sample-data/Activity_Details_1781920653570.csv
 ```
 
 ### 4. Build for production
@@ -217,7 +217,7 @@ src/
 └── theme/                        # MUI theme (Geist fonts)
 
 sample-data/
-└── workforce-activity-sample.csv # Demo CSV
+└── Activity_Details_1781920653570.csv # QuickSight activity export (demo)
 
 .cursor/                          # Agent/developer documentation (architecture, rules)
 ```

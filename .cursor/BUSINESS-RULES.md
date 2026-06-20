@@ -196,4 +196,4 @@ Zoom presets: Full (1x), 2x, 4x, 8x with horizontal scroll.
 
 ## Sample data
 
-`sample-data/workforce-activity-sample.csv` — John Doe has ~30m off-task gap (07:44:56 → 08:15:00).
+`sample-data/Activity_Details_1781920653570.csv` — Abdisalam Jama (`abdisacj`) has a ~32 min off-task gap (09:38:13 → 10:09:46). Export includes extra columns (`Tool`, `destination_container`) beyond the required set; parser ignores them.

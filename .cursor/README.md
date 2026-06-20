@@ -49,7 +49,7 @@ npm run dev    # http://localhost:3000
 npm run build
 ```
 
-Sample data: `sample-data/workforce-activity-sample.csv`
+Sample data: `sample-data/Activity_Details_1781920653570.csv`
 
 ## Key concepts (current)
 

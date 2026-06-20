@@ -86,8 +86,8 @@ Active app uses paths listed in `FEATURE-MAP.md`.
 ## Testing manually
 
 1. `npm run dev`
-2. Upload `sample-data/workforce-activity-sample.csv`
-3. Dashboard: 3 associates, John Doe highest off-task
+2. Upload `sample-data/Activity_Details_1781920653570.csv`
+3. Dashboard: 1 associate (Abdisalam Jama) — ~32 min off-task gap (09:38:13 → 10:09:46)
 4. Configure a paid break overlapping an off-task gap (e.g. 09:50–10:00)
 5. Click associate: timeline shows split segments (off-task → paid break → off-task)
 6. Schedule Events table shows paid break row; Off-task Events shows remaining off-task portions
