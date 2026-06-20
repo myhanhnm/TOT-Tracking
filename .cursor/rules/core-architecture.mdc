@@ -18,8 +18,9 @@ CSV upload → useCsvUpload → ActivityParserService → ActivityAnalysisServic
     → ActivityContext.filteredAnalysis → feature hooks → components
 ```
 
-- Business logic in `src/modules/WorkforceActivity/services/`
+- Business logic in `src/shared/services/`
 - Reusable helpers in `src/shared/utils/`
+- App state in `src/context/ActivityContext.tsx`
 - Timeline merge in `src/shared/utils/timelineMerge.ts` → `applyScheduleBlocksToTimeline`
 - UI components are presentational — no parsing or gap math in components
 - State in `ActivityContext` (CSV in-memory; schedule blocks in `localStorage`)
@@ -35,9 +36,11 @@ Single feature module: `src/modules/WorkforceActivity/`
 | Views | `WorkforceActivityUpload/Dashboard/AssociateDetail.tsx` |
 | Components | `components/` |
 | Hooks | `hooks/` |
-| Services | `ActivityParserService`, `ActivityAnalysisService`, `ActivityFilterService`, `ActivityChartService`, `ScheduleBlockStorageService` |
 | Models | `models/` |
-| Context | `context/ActivityContext.tsx` |
+| Constants | `constants/` |
+| Context | `src/context/ActivityContext.tsx` |
+| Services | `src/shared/services/` |
+| Shared utils | `src/shared/utils/` |
 
 ## App entry
 

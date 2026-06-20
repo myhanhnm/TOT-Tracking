@@ -26,7 +26,7 @@
 
 | Export | File |
 |--------|------|
-| `ActivityProvider`, `useActivityContext` | `context/ActivityContext.tsx` |
+| `ActivityProvider`, `useActivityContext` | `src/context/ActivityContext.tsx` |
 
 Context exposes: `analysis`, `filteredAnalysis`, `filters`, `filterOptions`, `scheduleBlocks`, view navigation, schedule block CRUD.
 
@@ -40,16 +40,16 @@ Context exposes: `analysis`, `filteredAnalysis`, `filters`, `filterOptions`, `sc
 | `useAssociateDetail` | `hooks/useAssociateDetail.ts` | `summary`, `offTaskGaps`, `offTaskStats`, `scheduleSegments`, `shiftUtilization` |
 | `useWorkforceDashboardData` | `hooks/useWorkforceDashboardData.ts` | Metrics, charts, rankings data from `filteredAnalysis` |
 
-## Services
+## Shared services (`src/shared/services/`)
 
 | Service | File | Methods |
 |---------|------|---------|
-| `ActivityParserService` | `services/ActivityParserService.ts` | `validateFileType`, `validateHeaders`, `parseRows` |
-| `ActivityAnalysisService` | `services/ActivityAnalysisService.ts` | `analyze(events, scheduleBlocks)`, `getAssociateSummary`, `getAssociateShiftUtilization`, `getAssociateEvents`, `getAssociateGaps`, `getAssociateOffTaskGaps` |
-| `ActivityFilterService` | `services/ActivityFilterService.ts` | `applyFilters`, `extractFilterOptions`, `hasActiveFilters` |
-| `ActivityChartService` | `services/ActivityChartService.ts` | `buildTopOffTaskChartData`, `buildTopScanVolumeChartData`, `buildUtilizationDistribution`, `buildGapDurationDistribution` |
-| `ActivityRankingService` | `services/ActivityChartService.ts` | `getTopOffTaskAssociates`, `getTopUtilizedAssociates`, `getTopScanVolumeAssociates` |
-| `ScheduleBlockStorageService` | `services/ScheduleBlockStorageService.ts` | `load`, `save`, `createId` |
+| `ActivityParserService` | `ActivityParserService.ts` | `validateFileType`, `validateHeaders`, `parseRows` |
+| `ActivityAnalysisService` | `ActivityAnalysisService.ts` | `analyze(events, scheduleBlocks)`, `getAssociateSummary`, `getAssociateShiftUtilization`, `getAssociateEvents`, `getAssociateGaps`, `getAssociateOffTaskGaps` |
+| `ActivityFilterService` | `ActivityFilterService.ts` | `applyFilters`, `extractFilterOptions`, `hasActiveFilters` |
+| `ActivityChartService` | `ActivityChartService.ts` | `buildTopOffTaskChartData`, `buildTopScanVolumeChartData`, `buildUtilizationDistribution`, `buildGapDurationDistribution` |
+| `ActivityRankingService` | `ActivityChartService.ts` | `getTopOffTaskAssociates`, `getTopUtilizedAssociates`, `getTopScanVolumeAssociates` |
+| `ScheduleBlockStorageService` | `ScheduleBlockStorageService.ts` | `load`, `save`, `createId` |
 
 ## Shared utils (`src/shared/utils/`)
 

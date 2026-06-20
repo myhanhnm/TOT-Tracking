@@ -47,6 +47,8 @@ Each `src/layouts/<Layout>/` folder has **exactly 3 files** (`Layout.tsx`, `Layo
 
 Reusable utilities belong in `src/shared/utils/`, not `src/modules/<Feature>/utils/`, when they may serve multiple features.
 
+Domain services → `src/shared/services/`. App-level React Context → `src/context/`. Do not nest `services/` or `context/` inside modules when reusable.
+
 ---
 
 # Usage
@@ -120,6 +122,7 @@ AI agents must:
 - use **`PublicLayout` / `PrivateLayout`** — never custom shells like `AppShell`; no-auth apps use `PublicLayout` only
 - keep layout folders to **3 files**; put `PublicHeader` and similar chrome in `src/components/`
 - put reusable utilities in `src/shared/utils/` (not `src/modules/<Feature>/utils/` unless strictly feature-local)
+- put domain services in `src/shared/services/` and app context in `src/context/` (not inside feature modules when reusable)
 - keep pages thin
 - keep feature logic inside modules
 - use `src/` imports

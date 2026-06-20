@@ -1,4 +1,4 @@
-import { useActivityContext } from '../context';
+import { useActivityContext } from 'src/context';
 
 type UseActivityAnalysisReturn = {
   analysis: ReturnType<typeof useActivityContext>['filteredAnalysis'];

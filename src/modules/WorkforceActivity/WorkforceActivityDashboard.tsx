@@ -13,7 +13,7 @@ import {
   WorkforceMetricsCards,
 } from './components';
 import { useFilteredAnalysis, useWorkforceDashboardData } from './hooks';
-import { useActivityContext } from './context';
+import { useActivityContext } from 'src/context';
 import classes from './workforce-activity.module.scss';
 
 export function WorkforceActivityDashboard(): React.ReactElement {

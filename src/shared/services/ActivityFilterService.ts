@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 
-import { ActivityFilterOptions, ActivityFilters } from '../models/activity-filters.model';
-import { ScanEvent } from '../models/scan-event.model';
+import { ActivityFilterOptions, ActivityFilters } from 'src/modules/WorkforceActivity/models/activity-filters.model';
+import { ScanEvent } from 'src/modules/WorkforceActivity/models/scan-event.model';
 
 function toDateKey(date: Date): string {
   return format(date, 'yyyy-MM-dd');

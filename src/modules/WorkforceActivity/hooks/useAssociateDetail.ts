@@ -1,5 +1,5 @@
-import { useActivityContext } from '../context';
-import { ActivityAnalysisService } from '../services';
+import { useActivityContext } from 'src/context';
+import { ActivityAnalysisService } from 'src/shared/services';
 import { AssociateSummary, OffTaskGap, OffTaskGapStats, ShiftUtilization, TimelineSegment } from '../models';
 import { computeOffTaskGapStats, getScheduledSegments } from 'src/shared/utils';
 

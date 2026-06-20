@@ -2,16 +2,16 @@
 
 import * as React from 'react';
 
-import { EMPTY_ACTIVITY_FILTERS, DEFAULT_SCHEDULE_BLOCKS } from '../constants';
-import { ActivityView, ACTIVITY_VIEWS } from '../constants/view.constants';
-import { ActivityFilterOptions, ActivityFilters } from '../models/activity-filters.model';
-import { ActivityAnalysisResult } from '../models';
-import { ScheduleBlock } from '../models/schedule-block.model';
+import { EMPTY_ACTIVITY_FILTERS, DEFAULT_SCHEDULE_BLOCKS } from 'src/modules/WorkforceActivity/constants';
+import { ActivityView, ACTIVITY_VIEWS } from 'src/modules/WorkforceActivity/constants/view.constants';
+import { ActivityFilterOptions, ActivityFilters } from 'src/modules/WorkforceActivity/models/activity-filters.model';
+import { ActivityAnalysisResult } from 'src/modules/WorkforceActivity/models';
+import { ScheduleBlock } from 'src/modules/WorkforceActivity/models/schedule-block.model';
 import {
   ActivityAnalysisService,
   ActivityFilterService,
   ScheduleBlockStorageService,
-} from '../services';
+} from 'src/shared/services';
 
 type ActivityContextValue = {
   analysis: ActivityAnalysisResult | null;

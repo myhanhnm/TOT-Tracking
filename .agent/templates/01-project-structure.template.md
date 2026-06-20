@@ -263,6 +263,8 @@ Do not place UI components or feature logic here.
 
 Contains React Context definitions and providers when Context is the selected state solution.
 
+Do **not** place app-level or cross-module context inside `src/modules/<Feature>/context/`. Use `src/context/` and compose providers in `src/providers/`.
+
 Example:
 
 ```txt
@@ -471,7 +473,7 @@ BooksPage.getLayout = function getLayout(page: React.ReactElement) {
 
 ## 3.10 `src/services`
 
-Contains external service integrations only.
+Contains **external** service integrations only (third-party SDKs).
 
 Examples:
 
@@ -494,15 +496,11 @@ src/services/
 └── socket/
 ```
 
-Do not use `services` for normal API calls.
+Do not use `src/services/` for normal backend API calls (use `src/apis/`).
 
-Normal backend API calls belong in:
+Do not use `src/services/` for domain/business logic classes — those belong in `src/shared/services/`.
 
-```txt
-src/apis/
-```
-
-If the project does not use external services, remove this folder.
+If the project does not use external SDK integrations, remove this folder.
 
 ---
 
@@ -517,6 +515,7 @@ Shared may contain:
 - models
 - types
 - utils
+- services (domain/business logic — not external SDK wrappers)
 - hooks if they are not placed in `src/hooks`
 - form helpers
 - API helpers
@@ -531,6 +530,7 @@ src/shared/
 ├── models/
 ├── types/
 ├── utils/
+├── services/
 ├── validations/
 └── helpers/
 ```
@@ -549,7 +549,17 @@ Move utilities to `src/shared/utils/` when:
 - they are intended for reuse across modules (even if only one module uses them today)
 - promoting them avoids duplication as the app grows
 
+Move domain services to `src/shared/services/` when:
+
+- they orchestrate business rules (parse, analyze, filter, chart builders)
+- they may be reused by multiple modules or hooks
+- they should not live inside a feature module folder
+
 Keep utilities inside `src/modules/<Feature>/utils/` only when they are **strictly** single-feature mappers or glue with no realistic cross-module reuse.
+
+Keep services inside modules only when they are **strictly** feature-local and will never be composed at app level.
+
+App-level React Context belongs in `src/context/`, not `src/modules/<Feature>/context/`.
 
 When shared utils depend on domain types, co-locate or move those types to `src/shared/models/` so `shared` does not import from `modules`.
 
@@ -666,6 +676,8 @@ src/modules/<ModuleName>/
 ```
 
 Optional `utils/` only for strictly module-local mappers. Reusable utilities belong in `src/shared/utils/`.
+
+Do **not** put `context/` or domain `services/` inside modules when they are app-level or reusable — use `src/context/` and `src/shared/services/` instead.
 
 Example:
 

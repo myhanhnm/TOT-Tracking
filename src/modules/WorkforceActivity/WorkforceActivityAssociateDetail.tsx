@@ -13,7 +13,7 @@ import {
   ScheduleEventsTable,
 } from './components';
 import { useAssociateDetail } from './hooks';
-import { useActivityContext } from './context';
+import { useActivityContext } from 'src/context';
 import classes from './workforce-activity.module.scss';
 
 type Props = {

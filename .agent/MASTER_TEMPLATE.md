@@ -120,6 +120,9 @@ This project uses **Next.js Pages Router**. App Router is **forbidden**.
 ### TOT-Tracking (this repo)
 
 - **Single route:** `src/pages/index.tsx` → `<WorkforceActivity />`
+- **App state:** `src/context/ActivityContext.tsx` (not inside the module)
+- **Domain services:** `src/shared/services/` (not inside the module)
+- **Shared utils:** `src/shared/utils/`
 - View switching (`upload` \| `dashboard` \| `associate`) is **client state** in `ActivityContext`, not URL routes
 - Do not add `src/app/` or migrate to App Router unless explicitly requested
 
@@ -188,7 +191,9 @@ src/shared/          # constants, enums, models, types, utils
 
 `src/shared/utils/` holds cross-module or promotable utilities (datetime, formatting, timeline helpers, API helpers). Module `utils/` is only for strictly feature-local mappers.
 
-These should contain generic reusable logic only.
+`src/shared/services/` holds domain/business service classes (parse, analyze, filter, chart builders) when reusable or not owned by a single module screen. Module `services/` is only for strictly feature-local orchestration.
+
+`src/context/` holds React Context providers for app-level or cross-module state (auth, cart, activity). Do not nest `context/` inside modules when state may be shared or composed in `src/providers/`.
 
 ### Feature-specific logic belongs inside modules
 

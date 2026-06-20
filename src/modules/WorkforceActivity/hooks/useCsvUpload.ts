@@ -3,9 +3,9 @@
 import * as React from 'react';
 import Papa from 'papaparse';
 
-import { useActivityContext } from '../context';
+import { useActivityContext } from 'src/context';
 import { CsvRow } from '../models';
-import { ActivityAnalysisService, ActivityParserService } from '../services';
+import { ActivityAnalysisService, ActivityParserService } from 'src/shared/services';
 
 type UseCsvUploadReturn = {
   isDragging: boolean;

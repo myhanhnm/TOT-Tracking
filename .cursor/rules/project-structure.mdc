@@ -12,12 +12,14 @@ Full reference: `.cursor/ARCHITECTURE.md`, `.cursor/FEATURE-MAP.md`
 ```txt
 src/
 ├── pages/                  # Pages Router — _app, _document, index
-├── providers/              # AppProviders (theme + activity context)
+├── providers/              # AppProviders (theme + context composition)
+├── context/                # ActivityContext (app state)
 ├── components/             # Shared UI (EmptyState, LoadingState, ErrorState, PublicHeader)
 ├── layouts/PublicLayout/   # 3 files only — shell via getLayout
-├── modules/WorkforceActivity/  # Entire MVP feature
+├── modules/WorkforceActivity/  # Feature UI, hooks, models, constants
 ├── shared/constants/       # Minimal shared constants
 ├── shared/utils/           # Reusable utilities (datetime, gaps, timeline merge)
+├── shared/services/        # Domain services (parse, analyze, filter, charts, storage)
 ├── styles/                 # Global SCSS + Tailwind entry
 └── theme/                  # MUI theme (Geist fonts)
 ```
@@ -29,22 +31,20 @@ src/modules/WorkforceActivity/
 ├── components/
 ├── hooks/
 ├── models/
-├── services/
 ├── constants/
-├── context/
 ├── WorkforceActivity.tsx
 └── WorkforceActivity{Upload,Dashboard,AssociateDetail}.tsx
 ```
 
-Reusable utilities live in `src/shared/utils/` (not inside the module).
+Reusable utilities → `src/shared/utils/`. Domain services → `src/shared/services/`. App context → `src/context/`.
 
 ## Import direction
 
 ```txt
-app → modules → shared / components / hooks / services / models
+app → modules → context / shared / components / hooks / models
 ```
 
-`src/shared/utils/` must not create circular imports — if utils need domain types, keep types in `src/shared/models/` or accept a temporary import from the owning module.
+`src/shared/utils/` and `src/shared/services/` must not create circular imports — if they need domain types, keep types in `src/shared/models/` or accept a temporary import from the owning module.
 
 ## Inactive (ignore / do not extend)
 

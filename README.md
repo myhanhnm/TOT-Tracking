@@ -66,7 +66,8 @@ CSV → ActivityParserService → ActivityAnalysisService (+ schedule blocks)
 
 - Single route: `/`
 - Three client views (no URL routing): `upload` | `dashboard` | `associate`
-- Business logic in `src/modules/WorkforceActivity/services/`; reusable helpers in `src/shared/utils/`
+- Business logic in `src/shared/services/`; reusable helpers in `src/shared/utils/`
+- App state in `src/context/ActivityContext.tsx`
 - UI components do not parse CSV or calculate metrics
 
 See [`.cursor/ARCHITECTURE.md`](.cursor/ARCHITECTURE.md) for full agent/developer documentation.
@@ -204,14 +205,14 @@ src/
 ├── providers/                    # AppProviders (theme + activity context)
 ├── components/                   # Shared UI (EmptyState, LoadingState, ErrorState, PublicHeader)
 ├── layouts/PublicLayout/         # 3 files: shell only (no nested components/)
+├── context/                      # ActivityContext (app state)
 ├── shared/utils/                 # Gaps, timeline merge, utilization, datetime
-├── modules/WorkforceActivity/    # Entire MVP feature module
+├── shared/services/              # Parser, analysis, filters, charts, schedule storage
+├── modules/WorkforceActivity/    # Feature UI, hooks, models, constants
 │   ├── components/               # Dashboard, timeline, filters, charts, tables
 │   ├── hooks/                    # useCsvUpload, useFilteredAnalysis, etc.
-│   ├── services/                 # Parser, analysis, filters, charts, schedule storage
 │   ├── models/                   # TypeScript domain types
 │   ├── constants/                # Thresholds, CSV columns, schedule defaults
-│   └── context/                  # ActivityContext (state + filters + schedule blocks)
 ├── styles/                       # Global SCSS + Tailwind entry
 └── theme/                        # MUI theme (Geist fonts)
 

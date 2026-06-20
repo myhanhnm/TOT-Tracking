@@ -2,8 +2,8 @@ import {
   ACCEPTED_CSV_MIME_TYPES,
   CSV_COLUMN_MAP,
   REQUIRED_CSV_COLUMNS,
-} from '../constants';
-import { CsvRow, ScanEvent } from '../models';
+} from 'src/modules/WorkforceActivity/constants';
+import { CsvRow, ScanEvent } from 'src/modules/WorkforceActivity/models';
 import { parseEventTime } from 'src/shared/utils/datetime';
 
 export type ParseCsvResult = {

@@ -24,7 +24,7 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 import { DEFAULT_SCHEDULE_BLOCKS } from '../../constants/schedule.constants';
 import { SCHEDULE_BLOCK_TYPE_LABELS } from '../../constants/segment.constants';
-import { useActivityContext } from '../../context';
+import { useActivityContext } from 'src/context';
 import { ScheduleBlockType } from '../../models/schedule-block.model';
 
 import classes from './ScheduleBlocksManager.module.scss';

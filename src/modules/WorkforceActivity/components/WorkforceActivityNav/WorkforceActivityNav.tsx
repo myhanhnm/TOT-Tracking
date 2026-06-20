@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 
 import { ACTIVITY_VIEWS } from 'src/modules/WorkforceActivity/constants/view.constants';
-import { useActivityContext } from 'src/modules/WorkforceActivity/context';
+import { useActivityContext } from 'src/context';
 
 import classes from './WorkforceActivityNav.module.scss';
 

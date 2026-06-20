@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { ActivityProvider } from 'src/modules/WorkforceActivity/context';
+import { ActivityProvider } from 'src/context';
 import { AppThemeProvider } from 'src/theme/AppThemeProvider';
 
 type Props = {

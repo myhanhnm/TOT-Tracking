@@ -36,8 +36,8 @@ UI components (no business logic in components)
 | Module root | `src/modules/WorkforceActivity/WorkforceActivity.tsx` | View switching + global filters |
 | Components | `.../components/` | Presentational UI only |
 | Hooks | `.../hooks/` | Orchestration, context access |
-| Context | `.../context/ActivityContext.tsx` | In-memory app state + filters + schedule blocks |
-| Services | `.../services/` | Parse, analyze, filter, chart data, schedule storage |
+| Context | `src/context/ActivityContext.tsx` | In-memory app state + filters + schedule blocks |
+| Services | `src/shared/services/` | Parse, analyze, filter, chart data, schedule storage |
 | Shared utils | `src/shared/utils/` | Datetime, duration, gaps, severity, timeline merge |
 | Models | `.../models/` | TypeScript types |
 | Shared UI | `src/components/` | EmptyState, LoadingState, ErrorState |

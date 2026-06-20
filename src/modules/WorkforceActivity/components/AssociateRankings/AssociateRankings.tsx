@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { useActivityContext } from '../../context';
+import { useActivityContext } from 'src/context';
 import { AssociateSummary } from '../../models';
 import { formatDuration, formatUtilizationPercent } from 'src/shared/utils';
 

@@ -31,7 +31,7 @@ Full reference: `.cursor/BUSINESS-RULES.md`, `.cursor/DATA-MODELS.md`
 ## Adding features
 
 1. Model in `models/`
-2. Reusable logic in `src/shared/utils/`; orchestration in `services/`
+2. Reusable logic in `src/shared/utils/`; orchestration in `src/shared/services/`
 3. Hook in `hooks/`
 4. Component in `components/`
 5. Wire in view component (`WorkforceActivityDashboard` or `AssociateDetail`)

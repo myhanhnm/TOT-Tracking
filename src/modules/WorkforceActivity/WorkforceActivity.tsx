@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 import { WorkforceActivityNav } from './components/WorkforceActivityNav';
 import { DashboardFilters } from './components';
 import { ACTIVITY_VIEWS } from './constants/view.constants';
-import { useActivityContext } from './context';
+import { useActivityContext } from 'src/context';
 import { WorkforceActivityAssociateDetail } from './WorkforceActivityAssociateDetail';
 import { WorkforceActivityDashboard } from './WorkforceActivityDashboard';
 import { WorkforceActivityUpload } from './WorkforceActivityUpload';

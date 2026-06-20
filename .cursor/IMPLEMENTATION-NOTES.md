@@ -23,7 +23,7 @@ Entire MVP runs in the browser. `ActivityProvider` holds `ActivityAnalysisResult
 
 Associate detail uses `loginId` in context, not URL params. Deep-linking to an associate is **not supported**. To add: sync `view` + `loginId` + filters to query params.
 
-### Business logic in services/utils, not components
+### Business logic in shared services, not components
 
 | Layer | Responsibility |
 |-------|----------------|
@@ -104,7 +104,7 @@ Active app uses paths listed in `FEATURE-MAP.md`.
 ## When extending
 
 1. Read `BUSINESS-RULES.md` first
-2. Add models → `src/shared/utils/` (if reusable) + services → hooks → components (in that order)
+2. Add models → `src/shared/utils/` + `src/shared/services/` → hooks → components (in that order)
 3. Keep components presentational
 4. Wire new calculations through `ActivityAnalysisService.analyze` so filters and schedule blocks stay consistent
 5. Match existing minimalist UI patterns

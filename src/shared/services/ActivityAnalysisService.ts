@@ -6,8 +6,8 @@ import {
   ShiftUtilization,
   TimelineSegment,
   WorkforceMetrics,
-} from '../models';
-import { ScheduleBlock } from '../models/schedule-block.model';
+} from 'src/modules/WorkforceActivity/models';
+import { ScheduleBlock } from 'src/modules/WorkforceActivity/models/schedule-block.model';
 import { calculateScanRatePerHour } from 'src/shared/utils/utilization';
 import { buildShiftUtilization, getOffTaskSegments } from 'src/shared/utils/timelineSegments';
 

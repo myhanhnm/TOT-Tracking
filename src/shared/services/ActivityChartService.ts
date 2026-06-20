@@ -1,5 +1,5 @@
-import { TOP_ASSOCIATES_CHART_LIMIT } from '../constants';
-import { AssociateSummary, ChartDatum, OffTaskGap } from '../models';
+import { TOP_ASSOCIATES_CHART_LIMIT } from 'src/modules/WorkforceActivity/constants';
+import { AssociateSummary, ChartDatum, OffTaskGap } from 'src/modules/WorkforceActivity/models';
 import { durationToMinutes, formatDuration } from 'src/shared/utils';
 
 function truncateName(name: string, maxLength = 14): string {

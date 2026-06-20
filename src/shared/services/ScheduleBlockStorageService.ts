@@ -1,5 +1,5 @@
-import { DEFAULT_SCHEDULE_BLOCKS, SCHEDULE_BLOCKS_STORAGE_KEY } from '../constants/schedule.constants';
-import { ScheduleBlock } from '../models/schedule-block.model';
+import { DEFAULT_SCHEDULE_BLOCKS, SCHEDULE_BLOCKS_STORAGE_KEY } from 'src/modules/WorkforceActivity/constants/schedule.constants';
+import { ScheduleBlock } from 'src/modules/WorkforceActivity/models/schedule-block.model';
 
 function isValidScheduleBlock(value: unknown): value is ScheduleBlock {
   if (!value || typeof value !== 'object') {

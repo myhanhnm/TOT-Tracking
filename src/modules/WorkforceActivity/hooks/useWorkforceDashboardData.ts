@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { TOP_ASSOCIATES_CHART_LIMIT } from '../constants';
 import { AssociateSummary, ChartDatum, WorkforceMetrics } from '../models';
-import { ActivityChartService, ActivityRankingService } from '../services';
+import { ActivityChartService, ActivityRankingService } from 'src/shared/services';
 import { useFilteredAnalysis } from './useFilteredAnalysis';
 
 type WorkforceDashboardData = {
