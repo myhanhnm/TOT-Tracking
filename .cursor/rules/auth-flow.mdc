@@ -1,0 +1,12 @@
+---
+description: NOT APPLICABLE — no authentication in this MVP
+alwaysApply: false
+---
+
+# Auth — not applicable
+
+This MVP has **no authentication**, no tokens, no login.
+
+Do not add auth, `UserContext`, or API authorization unless explicitly requested.
+
+Removed from this project: Cognito, `tokenManager`, `src/configs/request.ts`, cookie auth.

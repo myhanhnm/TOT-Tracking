@@ -1,0 +1,15 @@
+.charts-grid {
+  @apply grid grid-cols-1 gap-4 xl:grid-cols-3;
+}
+
+.chart-panel {
+  @apply flex flex-col rounded-lg border border-line bg-surface p-4 md:p-5;
+}
+
+.chart-title {
+  @apply mb-3 font-semibold;
+}
+
+.chart-container {
+  @apply h-72 w-full;
+}

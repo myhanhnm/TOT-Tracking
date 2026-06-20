@@ -1,0 +1,43 @@
+---
+description: Styling — MUI + Tailwind + SCSS for TOT-Tracking
+globs: "**/*.{tsx,scss}"
+alwaysApply: false
+---
+
+# Styling
+
+Design reference: `.cursor/.agents/skills/minimalist-ui/SKILL.md`
+
+## Palette (Tailwind)
+
+| Token | Value | Use |
+|-------|-------|-----|
+| `canvas` | `#F7F6F3` | Page background |
+| `surface` | `#FFFFFF` | Cards, panels |
+| `line` | `#EAEAEA` | Borders |
+| `ink` | `#2F3437` | Primary text |
+| `muted` | `#787774` | Secondary text |
+| `status-on-text` | `#346538` | Active / green |
+| `status-off-text` | `#9F2F2D` | Off-task / red |
+
+## Stack
+
+```txt
+MUI Theme     → Button, Table, Typography defaults
+Tailwind      → @apply in SCSS modules
+SCSS modules  → ComponentName.module.scss
+```
+
+## Rules
+
+- Prefer `border border-line` over box shadows
+- Use `font-mono` / `tabular-nums` for timestamps and metrics
+- Avoid SCSS class names that collide with Tailwind utilities (e.g. use `.summary-grid` not `.grid`)
+- MUI primary button: charcoal `#111111` via theme overrides
+- Responsive: mobile-first (`flex-col sm:flex-row`)
+
+## Do NOT
+
+- Hardcode hex when theme/tailwind token exists
+- Use heavy shadows (`shadow-lg`, etc.)
+- Put feature styles in `src/styles/` (use module SCSS)

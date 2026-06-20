@@ -1,0 +1,50 @@
+---
+description: Workforce Activity MVP — core architecture and data flow
+alwaysApply: true
+---
+
+# Core architecture (TOT-Tracking)
+
+Full reference: `.cursor/ARCHITECTURE.md`, `.cursor/BUSINESS-RULES.md`
+
+**Project:** Workforce Activity Analytics — client-side CSV analysis, no backend, no auth.
+
+## Data flow
+
+```txt
+CSV upload → useCsvUpload → ActivityParserService → ActivityAnalysisService
+    → ActivityContext → feature hooks → components
+```
+
+- Business logic in `src/modules/WorkforceActivity/services/` and `utils/`
+- UI components are presentational — no parsing or gap math in components
+- State in `ActivityContext` (in-memory only)
+
+## Module
+
+Single feature module: `src/modules/WorkforceActivity/`
+
+| Concern | Location |
+|---------|----------|
+| Screen router | `WorkforceActivity.tsx` |
+| Views | `WorkforceActivityUpload/Dashboard/AssociateDetail.tsx` |
+| Components | `components/` |
+| Hooks | `hooks/` |
+| Services | `services/ActivityParserService.ts`, `ActivityAnalysisService.ts` |
+| Models | `models/` |
+| Context | `context/ActivityContext.tsx` |
+
+## App entry
+
+```txt
+src/app/page.tsx → WorkforceActivity → AppShell + view content
+```
+
+Single route `/`. Views: `upload` | `dashboard` | `associate` (client state, not URL).
+
+## Do NOT
+
+- Add API clients or auth unless explicitly requested
+- Put business logic in components or `src/app/page.tsx`
+- Use `@/` imports (use `src/`)
+- Call services directly from components (use hooks)

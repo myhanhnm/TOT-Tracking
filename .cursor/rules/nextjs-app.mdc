@@ -1,0 +1,50 @@
+---
+description: Next.js App Router — single-page Workforce Activity app
+globs: src/app/**/*.tsx
+alwaysApply: false
+---
+
+# Next.js App Router conventions
+
+Full reference: `.cursor/PROJECT-OVERVIEW.md`
+
+This project uses **App Router only** — one route at `/`.
+
+## Layout (`src/app/layout.tsx`)
+
+- Server component
+- Loads global styles, Geist fonts
+- `suppressHydrationWarning` on `<html>` and `<body>` (browser extensions inject attributes)
+- Wraps children in `AppProviders`
+
+## Page (`src/app/page.tsx`)
+
+Thin wrapper only:
+
+```tsx
+import { WorkforceActivity } from 'src/modules/WorkforceActivity';
+
+export default function HomePage(): React.ReactElement {
+  return <WorkforceActivity />;
+}
+```
+
+## Providers (`src/app/providers.tsx`)
+
+Client component:
+
+```txt
+AppThemeProvider → ActivityProvider → children
+```
+
+## Rules
+
+- Pages do not contain business logic or feature UI sections
+- View switching happens inside `WorkforceActivity` module via context
+- Mark client boundaries with `'use client'` where hooks/context are used
+
+## Do NOT
+
+- Add Pages Router routes
+- Use `getLayout` pattern
+- Fetch from APIs in `app/` files

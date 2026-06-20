@@ -1,9 +1,9 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 import { CssBaseline, createTheme, ThemeProvider } from '@mui/material';
 import { base as baseTheme } from 'src/theme/core/base';
 
 type Props = {
-  children: ReactElement;
+  children: ReactNode;
 };
 
 export function AppThemeProvider({ children }: Props) {

@@ -1,0 +1,32 @@
+.metrics-grid {
+  @apply grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6;
+}
+
+.metric-card {
+  @apply flex flex-col gap-2 rounded-lg border border-line bg-surface p-4 transition-shadow duration-200 hover:shadow-soft;
+}
+
+.metric-value {
+  @apply text-lg font-semibold tracking-tight sm:text-xl;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-card--highlight {
+  @apply border-l-4 border-l-status-on-text;
+}
+
+.metric-card--warning {
+  @apply border-l-4 border-l-status-off-text;
+}
+
+.metric-card--paid-break {
+  border-left: 4px solid #7cb87c;
+}
+
+.metric-card--unpaid-break {
+  border-left: 4px solid #9ca3af;
+}
+
+.metric-card--meeting {
+  border-left: 4px solid #6b5b95;
+}

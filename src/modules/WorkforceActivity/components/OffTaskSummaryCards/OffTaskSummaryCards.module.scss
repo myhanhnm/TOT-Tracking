@@ -1,0 +1,12 @@
+.summary-grid {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4;
+}
+
+.card {
+  @apply flex flex-col gap-2 rounded-lg border border-line bg-surface p-5;
+}
+
+.value {
+  @apply font-semibold tracking-tight;
+  font-variant-numeric: tabular-nums;
+}

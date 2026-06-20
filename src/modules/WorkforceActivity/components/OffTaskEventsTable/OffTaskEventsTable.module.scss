@@ -1,0 +1,31 @@
+.wrapper {
+  @apply overflow-hidden rounded-lg border border-line bg-surface;
+}
+
+.title {
+  @apply border-b border-line px-4 py-4 font-semibold md:px-6;
+}
+
+.empty {
+  @apply px-4 py-8 md:px-6;
+}
+
+.mono {
+  font-variant-numeric: tabular-nums;
+}
+
+.severity-chip {
+  @apply font-semibold;
+}
+
+.severity-low {
+  @apply bg-accent-soft text-accent;
+}
+
+.severity-medium {
+  @apply bg-[#FBF3DB] text-[#956400];
+}
+
+.severity-high {
+  @apply bg-status-off text-status-off-text;
+}

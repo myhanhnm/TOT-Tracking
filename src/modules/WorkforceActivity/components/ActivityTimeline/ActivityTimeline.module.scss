@@ -1,0 +1,129 @@
+.wrapper {
+  @apply flex flex-col gap-4 rounded-lg border border-line bg-surface p-4 md:p-6;
+}
+
+.header {
+  @apply flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between;
+}
+
+.legend {
+  @apply flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted;
+}
+
+.legend-item {
+  @apply inline-flex items-center gap-2;
+}
+
+.legend-swatch {
+  @apply inline-block h-3 w-3 rounded-sm;
+}
+
+.legend-swatch--active {
+  @apply bg-status-on-text;
+}
+
+.legend-swatch--off-task {
+  @apply bg-status-off-text;
+}
+
+.legend-swatch--paid-break {
+  background-color: #7cb87c;
+}
+
+.legend-swatch--unpaid-break {
+  background-color: #9ca3af;
+}
+
+.legend-swatch--meeting {
+  background-color: #6b5b95;
+}
+
+.zoom-controls {
+  @apply flex flex-wrap items-center gap-3;
+}
+
+.zoom-label-text {
+  @apply font-medium;
+}
+
+.scroll-container {
+  @apply overflow-x-auto rounded-md border border-line bg-canvas p-2;
+}
+
+.track {
+  @apply flex h-10 min-w-full items-stretch overflow-hidden rounded-sm;
+}
+
+.segment {
+  @apply h-full min-w-[2px] cursor-pointer transition-opacity duration-200 hover:opacity-80;
+}
+
+.segment--active {
+  @apply bg-status-on-text;
+}
+
+.segment--off-task {
+  @apply bg-status-off-text;
+}
+
+.segment--paid-break {
+  background-color: #7cb87c;
+}
+
+.segment--unpaid-break {
+  background-color: #9ca3af;
+}
+
+.segment--meeting {
+  background-color: #6b5b95;
+}
+
+.time-axis {
+  @apply flex items-center justify-between;
+}
+
+.axis-label {
+  @apply font-mono text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-grid {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6;
+}
+
+.summary-stat {
+  @apply flex flex-col gap-1 rounded-md border border-line bg-canvas p-4;
+}
+
+.summary-stat--active {
+  @apply border-l-4 border-l-status-on-text;
+}
+
+.summary-stat--off-task {
+  @apply border-l-4 border-l-status-off-text;
+}
+
+.summary-stat--paid-break {
+  border-left: 4px solid #7cb87c;
+}
+
+.summary-stat--unpaid-break {
+  border-left: 4px solid #9ca3af;
+}
+
+.summary-stat--meeting {
+  border-left: 4px solid #6b5b95;
+}
+
+.summary-stat--default {
+  @apply border-l-4 border-l-ink;
+}
+
+.summary-value {
+  @apply font-semibold tracking-tight;
+  font-variant-numeric: tabular-nums;
+}
+
+.tooltip-content {
+  @apply flex flex-col gap-1 p-1;
+}

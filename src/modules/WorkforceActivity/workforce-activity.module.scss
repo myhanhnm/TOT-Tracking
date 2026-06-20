@@ -1,0 +1,23 @@
+.page-wrapper {
+  @apply flex flex-col gap-8;
+}
+
+.page-header {
+  @apply flex max-w-3xl flex-col gap-2;
+}
+
+.lede {
+  @apply max-w-2xl leading-relaxed;
+}
+
+.back-button {
+  @apply self-start px-0 text-muted;
+}
+
+.filter-empty {
+  @apply py-4;
+}
+
+.content-stack {
+  @apply flex flex-col gap-6;
+}

@@ -1,0 +1,27 @@
+.wrapper {
+  @apply flex flex-col gap-4 rounded-lg border border-line bg-surface p-4 md:p-5;
+}
+
+.header {
+  @apply flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between;
+}
+
+.title {
+  @apply font-semibold;
+}
+
+.form-grid {
+  @apply grid grid-cols-1 gap-3 border-t border-line pt-4 sm:grid-cols-2 lg:grid-cols-5;
+}
+
+.table-container {
+  @apply overflow-x-auto;
+}
+
+.mono {
+  font-variant-numeric: tabular-nums;
+}
+
+.empty-state {
+  @apply py-6 text-center;
+}

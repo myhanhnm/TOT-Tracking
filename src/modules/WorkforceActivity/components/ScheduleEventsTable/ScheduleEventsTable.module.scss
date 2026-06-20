@@ -1,0 +1,15 @@
+.wrapper {
+  @apply overflow-hidden rounded-lg border border-line bg-surface;
+}
+
+.title {
+  @apply border-b border-line px-4 py-4 font-semibold md:px-6;
+}
+
+.mono {
+  font-variant-numeric: tabular-nums;
+}
+
+.empty-state {
+  @apply px-4 py-8 text-center md:px-6;
+}

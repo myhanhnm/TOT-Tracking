@@ -1,0 +1,48 @@
+.shell {
+  @apply relative min-h-[100dvh] bg-canvas text-ink;
+}
+
+.ambient {
+  @apply pointer-events-none fixed inset-0 z-0;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(17, 17, 17, 0.03), transparent 42%),
+    radial-gradient(circle at 88% 0%, rgba(31, 108, 159, 0.04), transparent 36%);
+}
+
+.header {
+  @apply relative z-10 border-b border-line bg-surface/90 backdrop-blur-sm;
+}
+
+.header-inner {
+  @apply flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between;
+}
+
+.brand-block {
+  @apply flex flex-col gap-1;
+}
+
+.brand {
+  @apply font-semibold tracking-tight text-ink;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  @apply text-muted;
+}
+
+.nav {
+  @apply flex flex-wrap gap-2;
+}
+
+.nav-button {
+  @apply min-w-[6.5rem] rounded-md;
+}
+
+.main {
+  @apply relative z-10 flex flex-col gap-6 py-8 md:py-10;
+}
+
+.file-meta {
+  @apply font-mono text-muted;
+  font-variant-numeric: tabular-nums;
+}

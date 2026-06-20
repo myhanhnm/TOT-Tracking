@@ -1,0 +1,27 @@
+.wrapper {
+  @apply flex flex-col gap-4 rounded-lg border border-line bg-surface p-4 md:p-5;
+}
+
+.header {
+  @apply flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between;
+}
+
+.title {
+  @apply font-semibold;
+}
+
+.actions {
+  @apply flex items-center gap-2;
+}
+
+.search-field {
+  @apply w-full;
+}
+
+.filters-grid {
+  @apply grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6;
+}
+
+.filter-field {
+  @apply min-w-0;
+}

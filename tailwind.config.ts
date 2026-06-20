@@ -27,17 +27,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        canvas: '#F7F6F3',
+        surface: '#FFFFFF',
+        line: '#EAEAEA',
+        ink: '#2F3437',
+        muted: '#787774',
+        accent: '#1F6C9F',
+        'accent-soft': '#E1F3FE',
+        'status-off': '#FDEBEC',
+        'status-off-text': '#9F2F2D',
+        'status-on': '#EDF3EC',
+        'status-on-text': '#346538',
         ...themeConfig.palette,
-        'hero-bg': '#f8faff',
+        'hero-bg': '#F7F6F3',
         'app-primary-dtxt': themeConfig.darkText.primary,
         'app-secondary-dtxt': themeConfig.darkText.secondary,
         'app-disabled-dtxt': themeConfig.darkText.disabled,
       },
       fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
-        poppins: ['Poppins', 'sans-serif'],
         sans: ['var(--font-geist-sans)', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
+      },
+      boxShadow: {
+        soft: '0 2px 8px rgba(17, 17, 17, 0.04)',
       },
     },
     screens: {

@@ -1,0 +1,15 @@
+---
+description: DEPRECATED — this project uses App Router only
+globs: src/pages/**/*
+alwaysApply: false
+---
+
+# Pages Router — NOT USED
+
+This project was migrated to **App Router** with a single route at `/`.
+
+- Active routing: `src/app/`
+- See `.cursor/rules/nextjs-app.mdc`
+- Do not add or extend `src/pages/`
+
+Legacy `src/pages/` files may exist on disk — ignore them.

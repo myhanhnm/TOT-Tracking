@@ -1,0 +1,40 @@
+---
+description: Workforce Activity module — business rules and extension guide
+globs: src/modules/WorkforceActivity/**/*
+alwaysApply: false
+---
+
+# Workforce Activity module
+
+Full reference: `.cursor/BUSINESS-RULES.md`, `.cursor/DATA-MODELS.md`
+
+## Business rules (summary)
+
+- Each CSV row = scan event; gap = time between consecutive scans per associate
+- Off-task: gap **> 10 minutes** (`OFF_TASK_GAP_THRESHOLD_MS`)
+- Severity: Low ≤15m, Medium ≤30m, High >30m (off-task gaps only)
+- Utilization: `activeTime / (lastScan - firstScan) × 100`
+
+## Services
+
+| Service | Responsibility |
+|---------|----------------|
+| `ActivityParserService` | CSV file type, headers, row → `ScanEvent` |
+| `ActivityAnalysisService` | Sort, group, gaps, summaries, dashboard metrics |
+
+## Adding features
+
+1. Model in `models/`
+2. Logic in `utils/` or `services/`
+3. Hook in `hooks/`
+4. Component in `components/`
+5. Wire in view component (`WorkforceActivityDashboard` or `AssociateDetail`)
+
+## Components must not
+
+- Parse CSV or calculate gaps
+- Import PapaParse or call services directly
+
+## CSV columns
+
+Must match QuickSight export — see `constants/activity.constants.ts` → `REQUIRED_CSV_COLUMNS`

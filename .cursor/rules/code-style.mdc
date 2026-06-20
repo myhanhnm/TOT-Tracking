@@ -1,0 +1,45 @@
+---
+description: TypeScript and code style for TOT-Tracking
+alwaysApply: true
+---
+
+# Code style
+
+## TypeScript
+
+- Strict mode — no `any`
+- Explicit types at service boundaries
+- Models in `models/` — not inline in components
+
+## Imports
+
+```typescript
+import { X } from 'src/modules/WorkforceActivity/...';
+import { Y } from 'src/components';
+```
+
+Never use `@/` alias.
+
+## Naming
+
+| Artifact | Convention |
+|----------|------------|
+| Components | PascalCase `ActivityTimeline.tsx` |
+| Hooks | `useX.ts` |
+| Services | `ActivityXService.ts` static methods |
+| Models | `x.model.ts` |
+| SCSS modules | `ComponentName.module.scss` |
+| Constants | `SCREAMING_SNAKE` |
+
+## React
+
+- `import * as React from 'react'`
+- Named exports (not default) for components
+- `'use client'` on interactive modules
+- Business logic in hooks/services — not components
+
+## Files
+
+- Small, focused files
+- Barrel exports in `index.ts` per folder
+- Comments only for non-obvious business rules

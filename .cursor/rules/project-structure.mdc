@@ -1,0 +1,53 @@
+---
+description: TOT-Tracking folder structure and ownership
+alwaysApply: true
+---
+
+# Project structure
+
+Full reference: `.cursor/ARCHITECTURE.md`, `.cursor/FEATURE-MAP.md`
+
+## Active structure
+
+```txt
+src/
+├── app/                    # App Router — layout, page, providers
+├── components/             # Shared UI (EmptyState, LoadingState, ErrorState)
+├── layouts/AppShell/       # App header + nav
+├── modules/WorkforceActivity/  # Entire MVP feature
+├── shared/constants/       # Minimal shared constants
+├── styles/                 # Global SCSS + Tailwind entry
+└── theme/                  # MUI theme (Geist fonts)
+```
+
+## Module anatomy
+
+```txt
+src/modules/WorkforceActivity/
+├── components/
+├── hooks/
+├── models/
+├── services/
+├── utils/
+├── constants/
+├── context/
+├── WorkforceActivity.tsx
+└── WorkforceActivity{Upload,Dashboard,AssociateDetail}.tsx
+```
+
+## Import direction
+
+```txt
+app → modules → components / hooks / services / utils / models
+```
+
+## Inactive (ignore / do not extend)
+
+- `src/pages/`, `src/apis/`, `src/configs/request.ts`
+- `src/modules/Users/`, `Home/`, `Introduction/`
+- Auth, react-query, axios patterns from boilerplate
+
+## Styling
+
+- MUI theme tokens + Tailwind `@apply` in `*.module.scss`
+- Design: warm monochrome — see `.cursor/.agents/skills/minimalist-ui/SKILL.md`

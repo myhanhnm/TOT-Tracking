@@ -1,0 +1,12 @@
+---
+description: NOT APPLICABLE — no backend API in this MVP
+alwaysApply: false
+---
+
+# API structure — not applicable
+
+This MVP processes CSV **entirely client-side**. There is no `src/apis/` layer.
+
+Do not add axios, react-query, or HTTP clients unless a backend is explicitly requested.
+
+Data flow: `CSV → PapaParse → services → ActivityContext`

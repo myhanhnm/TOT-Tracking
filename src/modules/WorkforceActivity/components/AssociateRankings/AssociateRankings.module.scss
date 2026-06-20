@@ -1,0 +1,32 @@
+.rankings-grid {
+  @apply grid grid-cols-1 gap-4 xl:grid-cols-3;
+}
+
+.ranking-panel {
+  @apply flex flex-col rounded-lg border border-line bg-surface;
+}
+
+.ranking-title {
+  @apply border-b border-line px-4 py-3 font-semibold;
+}
+
+.table-container {
+  @apply overflow-x-auto;
+}
+
+.name-cell {
+  @apply max-w-[10rem] truncate font-medium;
+}
+
+.mono {
+  @apply font-mono text-sm;
+  font-variant-numeric: tabular-nums;
+}
+
+.table-row {
+  @apply cursor-pointer;
+}
+
+.empty-row {
+  @apply px-4 py-8 text-center;
+}
