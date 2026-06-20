@@ -6,7 +6,7 @@
 
 ## Purpose
 
-MVP dashboard that analyzes warehouse associate scan activity from **AWS QuickSight CSV exports**. Identifies **off-task periods** (gaps between consecutive scans exceeding a threshold). All processing is **client-side only** — no backend, no database, no auth.
+Supervisor-focused dashboard that analyzes warehouse associate scan activity from **AWS QuickSight CSV exports**. Identifies **off-task periods** (gaps between consecutive scans exceeding a threshold), supports **manual schedule blocks** (paid break, lunch, meeting), and provides filtering, rankings, and timelines. All processing is **client-side only** — no backend, no database, no auth.
 
 ## Tech stack
 
@@ -19,6 +19,7 @@ MVP dashboard that analyzes warehouse associate scan activity from **AWS QuickSi
 | CSV parsing | PapaParse |
 | Dates | date-fns |
 | Fonts | Geist Sans, Geist Mono (next/font) |
+| Persistence | `localStorage` for schedule blocks only |
 
 ## Single-page application
 
@@ -30,10 +31,17 @@ MVP dashboard that analyzes warehouse associate scan activity from **AWS QuickSi
 
 1. Land on **Upload** — drag/drop or browse CSV
 2. File parsed → analyzed → auto-switch to **Dashboard**
-3. Dashboard shows global metrics, charts, associate table
-4. Click associate row → **Associate Detail** (timeline, off-task table, summary cards)
+3. **Dashboard** shows:
+   - Filters (date, associate, login ID, function, process, unit class, search)
+   - Workforce metrics (active, off-task, breaks, meeting, utilization)
+   - Schedule block configuration (persisted in `localStorage`)
+   - Top associate rankings (off-task, utilization, scan volume)
+   - Charts (top 10 off-task, top 10 scans, utilization distribution, gap distribution)
+   - Full sortable associate table
+4. Click associate row → **Associate Detail** (timeline with 5 segment types, schedule events table, off-task table, summary cards)
 5. Header nav: Upload / Dashboard (Dashboard disabled until data loaded)
-6. Refresh clears all data (in-memory only)
+6. Filters appear on dashboard and associate views; all metrics/charts/tables/timelines respect filters
+7. Refresh clears uploaded CSV data (in-memory); schedule blocks persist in `localStorage`
 
 ## What was removed from boilerplate
 

@@ -7,37 +7,65 @@ Quick reference for agents extending the Workforce Activity module.
 ```typescript
 // hooks/useCsvUpload.ts — after PapaParse complete:
 const { events } = ActivityParserService.parseRows(results.data);
-const analysis = ActivityAnalysisService.analyze(events);
+const analysis = ActivityAnalysisService.analyze(events, scheduleBlocks);
 setAnalysis(analysis, file.name); // also switches view to dashboard
 ```
 
-## Read analysis in a component
+## Read filtered analysis in a component
 
 ```typescript
 const { analysis, hasData, isLoading } = useActivityAnalysis();
+// analysis === filteredAnalysis (respects filters + schedule blocks)
+```
+
+## Filters
+
+```typescript
+const { filters, updateFilter, resetFilters, hasActiveFilters } = useFilteredAnalysis();
+
+updateFilter('date', '2024-06-01');
+updateFilter('search', 'john');
+resetFilters();
+```
+
+## Dashboard data (metrics, charts, rankings)
+
+```typescript
+const {
+  metrics,
+  associates,
+  topOffTaskChart,
+  topUtilizedAssociates,
+  hasResults,
+} = useWorkforceDashboardData();
 ```
 
 ## Associate detail data
 
 ```typescript
-const { summary, offTaskGaps, offTaskStats, shiftUtilization } = useAssociateDetail({ loginId });
+const {
+  summary,
+  offTaskGaps,
+  offTaskStats,
+  scheduleSegments,
+  shiftUtilization,
+} = useAssociateDetail({ loginId });
 ```
 
-## Filter off-task gaps only
+## Get shift utilization from analysis
 
 ```typescript
-import { filterOffTaskGaps } from 'src/modules/WorkforceActivity/utils';
-// or
-ActivityAnalysisService.getAssociateOffTaskGaps(analysis, loginId);
+const utilization = ActivityAnalysisService.getAssociateShiftUtilization(filteredAnalysis, loginId);
+// utilization.segments — merged timeline with schedule overlay
 ```
 
-## Build timeline / utilization
+## Apply schedule blocks to timeline (pure function)
 
 ```typescript
-import { buildShiftUtilization } from 'src/modules/WorkforceActivity/utils';
+import { applyScheduleBlocksToTimeline, buildBaseSegmentsFromGaps } from 'src/modules/WorkforceActivity/utils';
 
-const events = ActivityAnalysisService.getAssociateEvents(analysis, loginId);
-const shiftUtilization = buildShiftUtilization(events);
+const baseSegments = buildBaseSegmentsFromGaps(gaps, loginId);
+const merged = applyScheduleBlocksToTimeline(baseSegments, scheduleBlocks);
 ```
 
 ## Gap severity
@@ -54,6 +82,21 @@ const severity = getGapSeverity(gap.durationMs); // 'Low' | 'Medium' | 'High'
 const { goToUpload, goToDashboard, openAssociate } = useActivityContext();
 
 openAssociate('jdoe001'); // switches to associate view
+```
+
+## Schedule block CRUD (context)
+
+```typescript
+const { scheduleBlocks, addScheduleBlock, updateScheduleBlock, deleteScheduleBlock, resetScheduleBlocks } =
+  useActivityContext();
+
+addScheduleBlock({
+  type: 'PAID_BREAK',
+  label: 'Paid Break',
+  startTime: '09:50',
+  endTime: '10:00',
+  appliesTo: 'ALL_ASSOCIATES',
+});
 ```
 
 ## New presentational component template
@@ -83,13 +126,17 @@ export function MyComponent({ }: Props): React.ReactElement {
 ## Duration / datetime formatting
 
 ```typescript
-import { formatDuration, formatEventDateTime, formatEventTime } from '../utils';
+import {
+  formatDuration,
+  formatEventDateTime,
+  formatUtilizationPercent,
+} from 'src/modules/WorkforceActivity/utils';
 ```
 
 ## Off-task threshold constant
 
 ```typescript
-import { OFF_TASK_GAP_THRESHOLD_MS } from '../constants';
+import { OFF_TASK_GAP_THRESHOLD_MS } from 'src/modules/WorkforceActivity/constants';
 // 10 * 60 * 1000
 ```
 

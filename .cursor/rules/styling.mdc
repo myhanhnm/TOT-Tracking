@@ -19,6 +19,9 @@ Design reference: `.cursor/.agents/skills/minimalist-ui/SKILL.md`
 | `muted` | `#787774` | Secondary text |
 | `status-on-text` | `#346538` | Active / green |
 | `status-off-text` | `#9F2F2D` | Off-task / red |
+| *(timeline)* | `#7CB87C` | Paid break (light green) |
+| *(timeline)* | `#9CA3AF` | Unpaid break / lunch (gray) |
+| *(timeline)* | `#6B5B95` | Meeting / SOS (purple) |
 
 ## Stack
 

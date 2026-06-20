@@ -12,13 +12,17 @@ Full reference: `.cursor/ARCHITECTURE.md`, `.cursor/BUSINESS-RULES.md`
 ## Data flow
 
 ```txt
-CSV upload → useCsvUpload → ActivityParserService → ActivityAnalysisService
-    → ActivityContext → feature hooks → components
+CSV upload → useCsvUpload → ActivityParserService → ActivityAnalysisService(events, scheduleBlocks)
+    → ActivityContext.analysis
+    → ActivityFilterService → ActivityAnalysisService(filtered, scheduleBlocks)
+    → ActivityContext.filteredAnalysis → feature hooks → components
 ```
 
 - Business logic in `src/modules/WorkforceActivity/services/` and `utils/`
+- Timeline merge in `utils/timelineMerge.ts` → `applyScheduleBlocksToTimeline`
 - UI components are presentational — no parsing or gap math in components
-- State in `ActivityContext` (in-memory only)
+- State in `ActivityContext` (CSV in-memory; schedule blocks in `localStorage`)
+- **Hooks use `filteredAnalysis`**, not raw `analysis`
 
 ## Module
 
@@ -30,14 +34,14 @@ Single feature module: `src/modules/WorkforceActivity/`
 | Views | `WorkforceActivityUpload/Dashboard/AssociateDetail.tsx` |
 | Components | `components/` |
 | Hooks | `hooks/` |
-| Services | `services/ActivityParserService.ts`, `ActivityAnalysisService.ts` |
+| Services | `ActivityParserService`, `ActivityAnalysisService`, `ActivityFilterService`, `ActivityChartService`, `ScheduleBlockStorageService` |
 | Models | `models/` |
 | Context | `context/ActivityContext.tsx` |
 
 ## App entry
 
 ```txt
-src/app/page.tsx → WorkforceActivity → AppShell + view content
+src/app/page.tsx → WorkforceActivity → AppShell + DashboardFilters + view content
 ```
 
 Single route `/`. Views: `upload` | `dashboard` | `associate` (client state, not URL).
@@ -48,3 +52,4 @@ Single route `/`. Views: `upload` | `dashboard` | `associate` (client state, not
 - Put business logic in components or `src/app/page.tsx`
 - Use `@/` imports (use `src/`)
 - Call services directly from components (use hooks)
+- Read raw `analysis` in feature hooks (use `filteredAnalysis`)

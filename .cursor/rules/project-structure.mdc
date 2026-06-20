@@ -29,7 +29,7 @@ src/modules/WorkforceActivity/
 ├── models/
 ├── services/
 ├── utils/
-├── constants/
+├── constants/              # thresholds, CSV, filters, schedule, segment labels
 ├── context/
 ├── WorkforceActivity.tsx
 └── WorkforceActivity{Upload,Dashboard,AssociateDetail}.tsx

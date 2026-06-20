@@ -5,15 +5,21 @@
 ```txt
 CSV File (browser)
     ↓
-ActivityParserService.parseRows()     ← PapaParse in useCsvUpload hook
+ActivityParserService.parseRows()          ← PapaParse in useCsvUpload hook
     ↓
 ScanEvent[]
     ↓
-ActivityAnalysisService.analyze()
+ActivityAnalysisService.analyze(events, scheduleBlocks)
     ↓
-ActivityAnalysisResult (in ActivityContext)
+ActivityAnalysisResult (raw, in ActivityContext.analysis)
     ↓
-Feature hooks (useActivityAnalysis, useAssociateDetail)
+ActivityFilterService.applyFilters()       ← when filters active
+    ↓
+ActivityAnalysisService.analyze(filtered, scheduleBlocks)
+    ↓
+filteredAnalysis (in ActivityContext)        ← used by all hooks/UI
+    ↓
+Feature hooks (useFilteredAnalysis, useWorkforceDashboardData, useAssociateDetail)
     ↓
 UI components (no business logic in components)
 ```
@@ -26,12 +32,12 @@ UI components (no business logic in components)
 | Layout | `src/app/layout.tsx` | HTML shell, fonts, global styles, providers |
 | Providers | `src/app/providers.tsx` | `AppThemeProvider` + `ActivityProvider` |
 | Shell | `src/layouts/AppShell/` | Header nav, file name meta |
-| Module root | `src/modules/WorkforceActivity/WorkforceActivity.tsx` | View switching |
+| Module root | `src/modules/WorkforceActivity/WorkforceActivity.tsx` | View switching + global filters |
 | Components | `.../components/` | Presentational UI only |
 | Hooks | `.../hooks/` | Orchestration, context access |
-| Context | `.../context/ActivityContext.tsx` | In-memory app state |
-| Services | `.../services/` | Parse + analyze (pure business) |
-| Utils | `.../utils/` | Datetime, duration, gaps, severity, timeline |
+| Context | `.../context/ActivityContext.tsx` | In-memory app state + filters + schedule blocks |
+| Services | `.../services/` | Parse, analyze, filter, chart data, schedule storage |
+| Utils | `.../utils/` | Datetime, duration, gaps, severity, timeline merge |
 | Models | `.../models/` | TypeScript types |
 | Shared UI | `src/components/` | EmptyState, LoadingState, ErrorState |
 | Theme | `src/theme/` | MUI theme config |
@@ -47,17 +53,45 @@ upload ◄──(nav)── dashboard ◄──(nav)── associate
 
 State in `ActivityContext`:
 
-- `view`: `upload` | `dashboard` | `associate`
-- `selectedLoginId`: string | null
-- `analysis`: `ActivityAnalysisResult | null`
-- `fileName`: string | null
+| Field | Type | Purpose |
+|-------|------|---------|
+| `view` | `upload` \| `dashboard` \| `associate` | Current screen |
+| `selectedLoginId` | `string \| null` | Associate detail target |
+| `analysis` | `ActivityAnalysisResult \| null` | Raw upload result |
+| `filteredAnalysis` | `ActivityAnalysisResult \| null` | Re-analyzed with filters + schedule blocks |
+| `filters` | `ActivityFilters` | Active dashboard filters |
+| `filterOptions` | `ActivityFilterOptions \| null` | Dropdown/autocomplete options from raw data |
+| `scheduleBlocks` | `ScheduleBlock[]` | Manual break/meeting config (`localStorage`) |
+| `fileName` | `string \| null` | Uploaded CSV name |
+
+**All feature hooks read `filteredAnalysis`**, not raw `analysis`. `hasData` checks `analysis !== null`.
+
+## Timeline merge pipeline
+
+```txt
+ScanEvent[] (per associate)
+    ↓
+calculateGapsForAssociate()                → OffTaskGap[]
+    ↓
+buildBaseSegmentsFromGaps()              → TimelineSegment[] (ACTIVE / OFF_TASK)
+    ↓
+applyScheduleBlocksToTimeline()          → splits OFF_TASK overlaps into scheduled segments
+    ↓
+calculateSegmentTimeBreakdown()          → metrics per associate
+    ↓
+ShiftUtilization (stored in analysis.shiftUtilizations[loginId])
+```
+
+Key function: `utils/timelineMerge.ts` → `applyScheduleBlocksToTimeline(segments, scheduleBlocks)`
+
+Schedule blocks resolved per unique calendar date in the timeline, then clipped to shift bounds.
 
 ## Separation of concerns (strict)
 
 **Components must NOT:**
 
 - Parse CSV
-- Calculate gaps or metrics
+- Calculate gaps, metrics, or timeline merges
 - Call services directly (use hooks)
 
 **Services must NOT:**
@@ -105,7 +139,8 @@ Design tokens in `tailwind.config.ts`: `canvas`, `surface`, `line`, `ink`, `mute
 | Future feature | Where to add |
 |----------------|--------------|
 | Persist uploads | New service + optional API; extend ActivityContext |
-| Break/lunch rules | `utils/gapCalculation.ts` or new service method |
-| Configurable threshold | `activity.constants.ts` + UI setting in context |
-| Export report | New hook + component; reuse analysis result |
+| Per-associate schedule blocks | Extend `ScheduleBlock.appliesTo` + filter in `applyScheduleBlocksToTimeline` |
+| Configurable off-task threshold | `activity.constants.ts` + UI setting in context |
+| Export report | New hook + component; reuse `filteredAnalysis` |
 | Multi-file compare | Extend context model; new dashboard section |
+| URL deep-linking | Sync `view` + `loginId` + filters to query params |

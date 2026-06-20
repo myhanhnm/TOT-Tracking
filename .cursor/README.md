@@ -5,7 +5,7 @@ This folder is the **source of truth** for AI agents working on this project.
 ## Read order
 
 1. [PROJECT-OVERVIEW.md](./PROJECT-OVERVIEW.md) — what the app does, tech stack, how to run
-2. [BUSINESS-RULES.md](./BUSINESS-RULES.md) — domain logic (gaps, severity, utilization)
+2. [BUSINESS-RULES.md](./BUSINESS-RULES.md) — domain logic (gaps, severity, utilization, schedule blocks)
 3. [ARCHITECTURE.md](./ARCHITECTURE.md) — folder structure, data flow, patterns
 4. [FEATURE-MAP.md](./FEATURE-MAP.md) — files, components, hooks, services
 5. [DATA-MODELS.md](./DATA-MODELS.md) — TypeScript models and computed types
@@ -50,3 +50,9 @@ npm run build
 ```
 
 Sample data: `sample-data/workforce-activity-sample.csv`
+
+## Key concepts (current)
+
+- **filteredAnalysis** — all UI reads this (filters + schedule blocks applied)
+- **applyScheduleBlocksToTimeline** — splits OFF_TASK segments with manual breaks/meetings
+- **scheduleBlocks** — persisted in `localStorage`, configured on dashboard

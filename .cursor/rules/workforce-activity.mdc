@@ -12,15 +12,21 @@ Full reference: `.cursor/BUSINESS-RULES.md`, `.cursor/DATA-MODELS.md`
 
 - Each CSV row = scan event; gap = time between consecutive scans per associate
 - Off-task: gap **> 10 minutes** (`OFF_TASK_GAP_THRESHOLD_MS`)
-- Severity: Low ≤15m, Medium ≤30m, High >30m (off-task gaps only)
-- Utilization: `activeTime / (lastScan - firstScan) × 100`
+- Severity: Low ≤15m, Medium ≤30m, High >30m (off-task segments only)
+- Utilization: `Active / (Active + Off Task) × 100` — breaks/meetings excluded from denominator
+- Schedule blocks overlay OFF_TASK segments via `applyScheduleBlocksToTimeline`
+- Filters re-run analysis on all metrics, charts, tables, timelines
 
 ## Services
 
 | Service | Responsibility |
 |---------|----------------|
 | `ActivityParserService` | CSV file type, headers, row → `ScanEvent` |
-| `ActivityAnalysisService` | Sort, group, gaps, summaries, dashboard metrics |
+| `ActivityAnalysisService` | Sort, group, timeline merge, summaries, metrics, `shiftUtilizations` |
+| `ActivityFilterService` | Filter events, extract filter options |
+| `ActivityChartService` | Chart data builders |
+| `ActivityRankingService` | Ranking sort helpers (in `ActivityChartService.ts`) |
+| `ScheduleBlockStorageService` | `localStorage` persistence for schedule blocks |
 
 ## Adding features
 
@@ -30,9 +36,11 @@ Full reference: `.cursor/BUSINESS-RULES.md`, `.cursor/DATA-MODELS.md`
 4. Component in `components/`
 5. Wire in view component (`WorkforceActivityDashboard` or `AssociateDetail`)
 
+New calculations must flow through `ActivityAnalysisService.analyze(events, scheduleBlocks)` so filters and schedule blocks stay consistent.
+
 ## Components must not
 
-- Parse CSV or calculate gaps
+- Parse CSV or calculate gaps/timeline merges
 - Import PapaParse or call services directly
 
 ## CSV columns
