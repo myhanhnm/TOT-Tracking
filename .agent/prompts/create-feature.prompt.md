@@ -37,7 +37,6 @@ Before creating new files:
 Do NOT:
 
 - introduce new architecture patterns
-- use App Router (`src/app/`, `layout.tsx`, `page.tsx` as routes)
 - create unnecessary abstractions
 - call APIs inside components
 - use raw `useQuery` directly in components

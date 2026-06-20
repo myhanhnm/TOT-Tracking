@@ -17,6 +17,8 @@ It teaches:
 
 # Core Philosophy
 
+**Canonical layout rules:** `01-project-structure.template.md` §3.8. This file shows implementation examples only.
+
 Layouts are app shell wrappers named **`PublicLayout`** and **`PrivateLayout`** (plus optional **`AdminLayout`**).
 
 | Authentication | Layouts |
@@ -30,7 +32,10 @@ Each layout folder contains **exactly 3 files** (`Layout.tsx`, `Layout.module.sc
 
 They own:
 
-- layout shell composition
+- header
+- footer
+- sidebar
+- navigation
 - route guard behavior
 - shell responsiveness
 - app-level page structure

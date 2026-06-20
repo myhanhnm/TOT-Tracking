@@ -209,7 +209,7 @@ products/
 
 ## Route folders
 
-Use kebab-case under `src/pages/` (**Pages Router only** — never `src/app/`).
+Use kebab-case under `src/pages/` (see `01-project-structure.template.md` §1.1).
 
 Correct:
 

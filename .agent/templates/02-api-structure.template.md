@@ -939,7 +939,7 @@ export function useCreateBookForm() {
 
 # 27. Page and Component Rules
 
-Pages live in `src/pages/` (**Pages Router only**). Do not use `src/app/` or App Router route files.
+Pages must follow `01-project-structure.template.md` §3.9 (thin pages, `getLayout`).
 
 Pages must not call:
 

@@ -33,7 +33,7 @@ Feature composition
     ↓
 Module screen
     ↓
-Page route (src/pages/ — Pages Router only)
+Page route (src/pages/)
 ```
 
 The goal is:
@@ -180,10 +180,6 @@ src/components/
 Use layouts for:
 
 - app shell
-- header
-- footer
-- sidebar
-- navigation
 - header
 - footer
 - sidebar

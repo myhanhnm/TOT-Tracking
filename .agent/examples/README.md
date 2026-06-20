@@ -100,15 +100,7 @@ Examples are intentionally:
 
 ## Pages
 
-Pages live in `src/pages/` (**Pages Router only**). Do not use `src/app/` or App Router patterns.
-
-Use `PublicLayout` via `getLayout` for guest/no-auth apps. Use `PrivateLayout` only when the app has authentication.
-
-Pages are:
-
-- route entry points
-- layout composition points
-- SEO entry points
+Pages are route entry points. See `01-project-structure.template.md` §3.9 and `examples/layout-example.md` for routing and `getLayout` rules.
 
 Pages should NOT:
 
@@ -134,7 +126,8 @@ Each feature owns:
 - schemas
 - models
 - constants
-- utilities
+
+Reusable utilities, services, and app context belong in `src/shared/` and `src/context/` — see `01-project-structure.template.md`.
 
 ---
 
@@ -178,7 +171,6 @@ Examples should include:
 
 Examples should demonstrate:
 
-- **Pages Router only** (`src/pages/`, never `src/app/`)
 - thin pages
 - feature ownership
 - reusable shared UI

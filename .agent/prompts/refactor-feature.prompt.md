@@ -35,7 +35,6 @@ Refactor toward:
 Do NOT:
 
 - introduce new architecture patterns
-- migrate to App Router or add `src/app/`
 - over-engineer abstractions
 - break existing UX
 - move feature-specific UI into global shared components unnecessarily

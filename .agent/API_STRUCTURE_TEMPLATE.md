@@ -779,17 +779,19 @@ When applying this template to a specific repo, generate a repo-specific doc wit
 
 ---
 
-## 14. Adaptation notes (TOT-Tracking)
+## 14. Adaptation notes (fill per repo)
 
-| Topic | This repo |
-|-------|-----------|
-| Routing | **Pages Router only** — `src/pages/`, no `src/app/` |
-| Layouts | `PublicLayout` only (no auth, no `PrivateLayout`) |
-| Context | `src/context/ActivityContext.tsx` |
-| Shared utils | `src/shared/utils/` — activity datetime, gaps, timeline merge |
-| Shared services | `src/shared/services/` — parse, analyze, filter, charts, storage |
-| API layer | Not used — client-side CSV analysis only |
-| Auth | Not used |
-| Entry | `src/pages/index.tsx` → `WorkforceActivity` module |
-| Providers | `src/providers/AppProviders.tsx` via `_app.tsx` |
+Record project-specific deviations in **that repo's** `.cursor/` or README — not in this generic template.
 
+| Topic | What to document |
+|-------|------------------|
+| Routing | Pages Router vs App Router; entry routes |
+| Auth | Provider, guards, or none |
+| API layer | REST client path, or not used |
+| Layouts | Public only vs Public + Private + Admin |
+| State | Context/providers location |
+| Stack extras | No backend, localStorage-only, etc. |
+
+See §13 for the full repo-doc outline agents should generate when onboarding a project.
+
+---

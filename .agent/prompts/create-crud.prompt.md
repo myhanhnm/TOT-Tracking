@@ -43,7 +43,6 @@ Use:
 
 Do NOT:
 
-- use App Router (`src/app/`) for list/create/edit routes
 - call APIs inside components
 - use raw fetch/axios in components
 - duplicate logic

@@ -50,7 +50,8 @@ Each feature owns:
 - models
 - feature components
 - constants
-- utilities
+
+Reusable utilities, domain services, and app context live outside modules — see `01-project-structure.template.md` §3.6, §3.11, §9.
 
 Example:
 
@@ -60,7 +61,6 @@ src/modules/Books/
 ├── hooks/
 ├── models/
 ├── constants/
-├── utils/
 ├── Books.tsx
 └── index.ts
 ```
@@ -95,105 +95,30 @@ export default function BooksPage() {
 
 ---
 
-## 3.2.1 Routing — Pages Router ONLY (mandatory)
+## 3.2 Routing & layouts
 
-This project uses **Next.js Pages Router**. App Router is **forbidden**.
+This boilerplate uses **Next.js Pages Router** and standard layouts **`PublicLayout`** / **`PrivateLayout`** (plus optional **`AdminLayout`**).
 
-### Required
+**Canonical rules:** `01-project-structure.template.md` §1.1 (routing), §3.8 (layouts). **Examples:** `examples/layout-example.md`.
 
-| Artifact | Location |
-|----------|----------|
-| Routes | `src/pages/` |
-| App wrapper | `src/pages/_app.tsx` |
-| Document shell | `src/pages/_document.tsx` |
-| Providers | `src/providers/` (imported from `_app.tsx`) |
-| Layout attachment | `Page.getLayout` on the page component |
+Summary:
 
-### Forbidden — do NOT create or use
-
-- `src/app/` directory
-- `app/layout.tsx`, `app/page.tsx`, route groups, or parallel routes
-- App Router `metadata` / `generateMetadata` exports
-- React Server Components as route entries
-- `loading.tsx`, `error.tsx`, `template.tsx` (App Router conventions)
-
-### TOT-Tracking (this repo)
-
-- **Single route:** `src/pages/index.tsx` → `<WorkforceActivity />`
-- **App state:** `src/context/ActivityContext.tsx` (not inside the module)
-- **Domain services:** `src/shared/services/` (not inside the module)
-- **Shared utils:** `src/shared/utils/`
-- View switching (`upload` \| `dashboard` \| `associate`) is **client state** in `ActivityContext`, not URL routes
-- Do not add `src/app/` or migrate to App Router unless explicitly requested
+- Routes in `src/pages/` with `_app.tsx`, `_document.tsx`, and `Page.getLayout`
+- No `src/app/` or App Router route files unless explicitly requested
+- Layout folders: exactly 3 files each; header/footer/sidebar chrome in `src/components/`
+- With auth: `PublicLayout` + `PrivateLayout`; without auth: `PublicLayout` only
 
 ---
 
-## 3.2.2 Layout — PublicLayout / PrivateLayout (mandatory)
+## 3.3 Shared vs feature ownership
 
-Every application uses standardized layouts in `src/layouts/`. Do not invent alternate shell names (e.g. `AppShell`, `DashboardLayout` as primary wrappers).
+**Canonical rules:** `01-project-structure.template.md` §3.6 (`context/`), §3.10–§3.11 (`services/`, `shared/`), §9 (decision rules).
 
-| App type | Layouts |
-|----------|---------|
-| With authentication | `PublicLayout` (guest) + `PrivateLayout` (authenticated) |
-| Without authentication | `PublicLayout` only — **no** `PrivateLayout` |
+Summary:
 
-### Rules
-
-- Attach layouts on pages via `Page.getLayout`, not inside feature modules
-- `_app.tsx` must call `Component.getLayout` when present
-- Each layout folder has **exactly 3 files**: `<Layout>.tsx`, `<Layout>.module.scss`, `index.ts`
-- Header, footer, sidebar, nav chrome live in `src/components/` — not inside `src/layouts/`
-- `PublicLayout` — landing, login, register, and all routes when there is no auth
-- `PrivateLayout` — authenticated routes only; redirect guests to login
-- Layouts compose shared chrome from `src/components/` — not feature business logic
-- Feature-specific navigation/toolbars belong in `src/modules/<Feature>/components/`
-
-### Forbidden
-
-- Custom app shell layouts outside `PublicLayout` / `PrivateLayout` / optional `AdminLayout`
-- Nested `components/` folders inside `src/layouts/<Layout>/`
-- Wrapping pages with layout components inside module roots
-- `PrivateLayout` in apps with no authentication flow
-
----
-
-## 3.3 API flow
-
-All API calls must follow this flow:
-
-```txt
-Component/Page
-    ↓
-Feature Hook
-    ↓
-API Client
-    ↓
-Shared Request Client
-    ↓
-Backend
-```
-
-Components and pages must never call HTTP directly.
-
----
-
-## 3.4 Shared vs Feature ownership
-
-### Global folders are ONLY for reusable logic
-
-Examples:
-
-```txt
-src/components/
-src/hooks/
-src/shared/          # constants, enums, models, types, utils
-```
-
-`src/shared/utils/` holds cross-module or promotable utilities (datetime, formatting, timeline helpers, API helpers). Module `utils/` is only for strictly feature-local mappers.
-
-`src/shared/services/` holds domain/business service classes (parse, analyze, filter, chart builders) when reusable or not owned by a single module screen. Module `services/` is only for strictly feature-local orchestration.
-
-`src/context/` holds React Context providers for app-level or cross-module state (auth, cart, activity). Do not nest `context/` inside modules when state may be shared or composed in `src/providers/`.
+- Modules own UI, hooks, models, constants
+- `src/shared/utils/`, `src/shared/services/`, `src/context/` hold reusable or app-level logic
+- Do not nest `context/`, domain `services/`, or promotable `utils/` inside modules
 
 ### Feature-specific logic belongs inside modules
 
@@ -215,80 +140,53 @@ unless truly reusable across multiple features.
 
 ---
 
+## 3.4 API flow
+
+All API calls must follow this flow:
+
+```txt
+Component/Page
+    ↓
+Feature Hook
+    ↓
+API Client
+    ↓
+Shared Request Client
+    ↓
+Backend
+```
+
+Components and pages must never call HTTP directly.
+
+---
+
+## 3.5 Styling (summary)
+
+MUI + Tailwind + SCSS Modules. Full rules: `04-mui-theme.template.md`, `05-tailwind-style.template.md`.
+
+---
+
 # 4. Current Expected Project Structure
 
-Example:
+Example (see `01-project-structure.template.md` for ownership rules):
 
 ```txt
 src/
 ├── apis/
-│   ├── auth/
-│   ├── books/
-│   ├── orders/
-│   └── index.ts
-│
 ├── components/
-│   ├── Button/
-│   ├── Modal/
-│   ├── Table/
-│   └── Form/
-│
 ├── configs/
-│   ├── request.ts
-│   ├── environment.ts
-│   └── tokenManager.ts
-│
+├── context/
 ├── hooks/
-│   ├── useDebounce.ts
-│   ├── useDisclosure.ts
-│   └── useWindowSize.ts
-│
 ├── layouts/
-│   ├── PrivateLayout/
-│   ├── PublicLayout/
-│   └── index.ts
-│
 ├── modules/
-│   ├── Books/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── models/
-│   │   ├── constants/
-│   │   ├── utils/
-│   │   ├── Books.tsx
-│   │   └── index.ts
-│   │
-│   ├── Cart/
-│   ├── Users/
-│   └── Admin/
-│
 ├── pages/
-│
 ├── providers/
-│   ├── AppProvider.tsx
-│   ├── AuthProvider.tsx
-│   └── QueryProvider.tsx
-│
 ├── shared/
 │   ├── constants/
-│   ├── enums/
-│   ├── models/
-│   ├── types/
-│   └── utils/
-│
+│   ├── utils/
+│   └── services/
 ├── styles/
-│   ├── _app.scss
-│   ├── _core.scss
-│   └── tailwind.scss
-│
-├── theme/
-│   ├── core/
-│   ├── fonts/
-│   ├── helpers/
-│   ├── types/
-│   └── AppThemeProvider.tsx
-│
-└── types/
+└── theme/
 ```
 
 ---
@@ -299,15 +197,15 @@ Always read the relevant template files before implementation.
 
 | Concern                  | Template                           |
 |--------------------------|------------------------------------|
-| Project structure        | `01-project-structure.template.md` |
+| Project structure, routing, layouts | `01-project-structure.template.md` |
 | API architecture         | `02-api-structure.template.md`     |
 | Authentication           | `03-auth-flow.template.md`         |
 | MUI theme usage          | `04-mui-theme.template.md`         |
 | Tailwind/SCSS usage      | `05-tailwind-style.template.md`    |
 | Component architecture   | `06-component-rules.template.md`   |
 | Forms & validation       | `07-form-handling.template.md`     |
-| Routing/layout rules     | `08-routing-layout.template.md`    |
-| Naming/import/code style | `09-code-style.template.md`        |
+| Naming/import/code style | `08-code-style.template.md`        |
+| Layout `getLayout` examples | `examples/layout-example.md`    |
 
 ---
 
@@ -398,20 +296,7 @@ Feature-specific hooks must stay inside modules.
 
 # 8. Styling Rules
 
-The project uses:
-
-- MUI
-- Tailwind
-- SCSS
-
-Rules:
-
-- Reuse theme values before hardcoding
-- Prefer existing spacing and typography scale
-- Prefer Tailwind utility classes for layout
-- Use SCSS for complex styling only
-- Reuse shared components before creating new UI
-- Do not introduce another styling system
+See §3.5 and `04-mui-theme.template.md`, `05-tailwind-style.template.md`.
 
 ---
 
