@@ -4,7 +4,7 @@ import {
   REQUIRED_CSV_COLUMNS,
 } from '../constants';
 import { CsvRow, ScanEvent } from '../models';
-import { parseEventTime } from '../utils/datetime';
+import { parseEventTime } from 'src/shared/utils/datetime';
 
 export type ParseCsvResult = {
   events: ScanEvent[];

@@ -51,19 +51,19 @@ Context exposes: `analysis`, `filteredAnalysis`, `filters`, `filterOptions`, `sc
 | `ActivityRankingService` | `services/ActivityChartService.ts` | `getTopOffTaskAssociates`, `getTopUtilizedAssociates`, `getTopScanVolumeAssociates` |
 | `ScheduleBlockStorageService` | `services/ScheduleBlockStorageService.ts` | `load`, `save`, `createId` |
 
-## Utils
+## Shared utils (`src/shared/utils/`)
 
 | File | Functions |
 |------|-----------|
-| `utils/datetime.ts` | `parseEventTime`, `formatEventTime`, `formatEventDateTime` |
-| `utils/duration.ts` | `formatDuration`, `durationToMinutes` |
-| `utils/gapCalculation.ts` | `calculateGapsForAssociate`, `isOffTaskGap`, `createGapBetweenEvents` |
-| `utils/gapSeverity.ts` | `getGapSeverity`, `filterOffTaskGaps`, `computeOffTaskGapStats` |
-| `utils/utilization.ts` | `calculateUtilizationPercent`, `formatUtilizationPercent`, `calculateScanRatePerHour` |
-| `utils/timelineSegments.ts` | `buildShiftUtilization`, `getOffTaskSegments`, `getScheduledSegments` |
-| `utils/timelineMerge.ts` | `applyScheduleBlocksToTimeline`, `buildBaseSegmentsFromGaps`, `calculateSegmentTimeBreakdown`, `mergeAdjacentSegments` |
-| `utils/scheduleBlockTime.ts` | `parseTimeOnDate`, `resolveScheduleBlock`, `resolveScheduleBlocksForDates`, `resolveAndClipScheduleBlocksForTimeline` |
-| `utils/segmentDisplay.ts` | `getSegmentCssClass`, `SEGMENT_STATUS_CSS_CLASS` |
+| `datetime.ts` | `parseEventTime`, `formatEventTime`, `formatEventDateTime` |
+| `duration.ts` | `formatDuration`, `durationToMinutes` |
+| `gapCalculation.ts` | `calculateGapsForAssociate`, `isOffTaskGap`, `createGapBetweenEvents` |
+| `gapSeverity.ts` | `getGapSeverity`, `filterOffTaskGaps`, `computeOffTaskGapStats` |
+| `utilization.ts` | `calculateUtilizationPercent`, `formatUtilizationPercent`, `calculateScanRatePerHour` |
+| `timelineSegments.ts` | `buildShiftUtilization`, `getOffTaskSegments`, `getScheduledSegments` |
+| `timelineMerge.ts` | `applyScheduleBlocksToTimeline`, `buildBaseSegmentsFromGaps`, `calculateSegmentTimeBreakdown`, `mergeAdjacentSegments` |
+| `scheduleBlockTime.ts` | `parseTimeOnDate`, `resolveScheduleBlock`, `resolveScheduleBlocksForDates`, `resolveAndClipScheduleBlocksForTimeline` |
+| `segmentDisplay.ts` | `getSegmentCssClass`, `SEGMENT_STATUS_CSS_CLASS` |
 
 ## Components (module)
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import { DashboardMetrics } from '../../models';
-import { formatDuration } from '../../utils';
+import { formatDuration } from 'src/shared/utils';
 
 import classes from './MetricsCards.module.scss';
 

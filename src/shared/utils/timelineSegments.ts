@@ -1,6 +1,6 @@
-import { ShiftUtilization, TimelineSegment } from '../models';
-import { ScheduleBlock } from '../models/schedule-block.model';
-import { ScanEvent } from '../models/scan-event.model';
+import { ShiftUtilization, TimelineSegment } from 'src/modules/WorkforceActivity/models';
+import { ScheduleBlock } from 'src/modules/WorkforceActivity/models/schedule-block.model';
+import { ScanEvent } from 'src/modules/WorkforceActivity/models/scan-event.model';
 import { calculateGapsForAssociate } from './gapCalculation';
 import {
   applyScheduleBlocksToTimeline,

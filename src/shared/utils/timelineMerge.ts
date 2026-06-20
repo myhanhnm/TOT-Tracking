@@ -6,8 +6,8 @@ import {
   ScheduleBlock,
   SegmentTimeBreakdown,
   TimelineSegment,
-} from '../models/activity-segment.model';
-import { ACTIVITY_SEGMENT_LABELS } from '../constants/segment.constants';
+} from 'src/modules/WorkforceActivity/models/activity-segment.model';
+import { ACTIVITY_SEGMENT_LABELS } from 'src/modules/WorkforceActivity/constants/segment.constants';
 import { resolveAndClipScheduleBlocksForTimeline } from './scheduleBlockTime';
 import { calculateUtilizationPercent } from './utilization';
 

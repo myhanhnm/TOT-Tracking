@@ -62,7 +62,7 @@ const utilization = ActivityAnalysisService.getAssociateShiftUtilization(filtere
 ## Apply schedule blocks to timeline (pure function)
 
 ```typescript
-import { applyScheduleBlocksToTimeline, buildBaseSegmentsFromGaps } from 'src/modules/WorkforceActivity/utils';
+import { applyScheduleBlocksToTimeline, buildBaseSegmentsFromGaps } from 'src/shared/utils';
 
 const baseSegments = buildBaseSegmentsFromGaps(gaps, loginId);
 const merged = applyScheduleBlocksToTimeline(baseSegments, scheduleBlocks);
@@ -71,7 +71,7 @@ const merged = applyScheduleBlocksToTimeline(baseSegments, scheduleBlocks);
 ## Gap severity
 
 ```typescript
-import { getGapSeverity } from 'src/modules/WorkforceActivity/utils';
+import { getGapSeverity } from 'src/shared/utils';
 
 const severity = getGapSeverity(gap.durationMs); // 'Low' | 'Medium' | 'High'
 ```
@@ -130,7 +130,7 @@ import {
   formatDuration,
   formatEventDateTime,
   formatUtilizationPercent,
-} from 'src/modules/WorkforceActivity/utils';
+} from 'src/shared/utils';
 ```
 
 ## Off-task threshold constant

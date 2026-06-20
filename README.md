@@ -66,7 +66,7 @@ CSV → ActivityParserService → ActivityAnalysisService (+ schedule blocks)
 
 - Single route: `/`
 - Three client views (no URL routing): `upload` | `dashboard` | `associate`
-- Business logic in `src/modules/WorkforceActivity/services/` and `utils/`
+- Business logic in `src/modules/WorkforceActivity/services/`; reusable helpers in `src/shared/utils/`
 - UI components do not parse CSV or calculate metrics
 
 See [`.cursor/ARCHITECTURE.md`](.cursor/ARCHITECTURE.md) for full agent/developer documentation.
@@ -133,7 +133,7 @@ ASIN, Reference, Size, Unit Type, Pack Flow, Pick Process Path, Units
 
 Each row is one scan event. The app groups events by associate (`LoginID`), sorts by time, and calculates gaps between consecutive scans.
 
-Supported `Event Time` formats include `yyyy-MM-dd HH:mm:ss` and common US date formats. See `src/modules/WorkforceActivity/utils/datetime.ts`.
+Supported `Event Time` formats include `yyyy-MM-dd HH:mm:ss` and common US date formats. See `src/shared/utils/datetime.ts`.
 
 ---
 
@@ -202,14 +202,13 @@ vercel --prod
 src/
 ├── pages/                        # Pages Router (_app, _document, index)
 ├── providers/                    # AppProviders (theme + activity context)
-├── components/                   # Shared UI (EmptyState, LoadingState, ErrorState)
+├── components/                   # Shared UI (EmptyState, LoadingState, ErrorState, PublicHeader)
 ├── layouts/PublicLayout/         # 3 files: shell only (no nested components/)
-├── components/PublicHeader/      # Layout chrome
+├── shared/utils/                 # Gaps, timeline merge, utilization, datetime
 ├── modules/WorkforceActivity/    # Entire MVP feature module
 │   ├── components/               # Dashboard, timeline, filters, charts, tables
 │   ├── hooks/                    # useCsvUpload, useFilteredAnalysis, etc.
 │   ├── services/                 # Parser, analysis, filters, charts, schedule storage
-│   ├── utils/                    # Gaps, timeline merge, utilization, datetime
 │   ├── models/                   # TypeScript domain types
 │   ├── constants/                # Thresholds, CSV columns, schedule defaults
 │   └── context/                  # ActivityContext (state + filters + schedule blocks)

@@ -1,7 +1,7 @@
 import { format, parse, startOfDay } from 'date-fns';
 
-import { ScheduleBlock, ResolvedScheduleBlock } from '../models/schedule-block.model';
-import { TimelineSegment } from '../models/activity-segment.model';
+import { ScheduleBlock, ResolvedScheduleBlock } from 'src/modules/WorkforceActivity/models/schedule-block.model';
+import { TimelineSegment } from 'src/modules/WorkforceActivity/models/activity-segment.model';
 
 const TIME_FORMATS = ['HH:mm', 'H:mm'] as const;
 

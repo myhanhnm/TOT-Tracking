@@ -15,7 +15,7 @@ import {
 
 import { useActivityContext } from '../../context';
 import { AssociateSummary } from '../../models';
-import { formatDuration, formatEventDateTime, formatUtilizationPercent } from '../../utils';
+import { formatDuration, formatEventDateTime, formatUtilizationPercent } from 'src/shared/utils';
 
 import classes from './AssociateTable.module.scss';
 

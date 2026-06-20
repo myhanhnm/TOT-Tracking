@@ -14,7 +14,7 @@ import {
 
 import { useActivityContext } from '../../context';
 import { AssociateSummary } from '../../models';
-import { formatDuration, formatUtilizationPercent } from '../../utils';
+import { formatDuration, formatUtilizationPercent } from 'src/shared/utils';
 
 import classes from './AssociateRankings.module.scss';
 

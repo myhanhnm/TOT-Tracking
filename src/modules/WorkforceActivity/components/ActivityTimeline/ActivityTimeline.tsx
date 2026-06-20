@@ -14,7 +14,7 @@ import {
   formatEventDateTime,
   formatUtilizationPercent,
   getSegmentCssClass,
-} from '../../utils';
+} from 'src/shared/utils';
 
 import classes from './ActivityTimeline.module.scss';
 

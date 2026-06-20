@@ -1,7 +1,7 @@
-import { GAP_SEVERITY_THRESHOLDS_MS } from '../constants';
-import { GAP_SEVERITY, GapSeverity } from '../models/gap-severity.model';
-import { OffTaskGap } from '../models/off-task-gap.model';
-import { OffTaskGapStats } from '../models/off-task-gap-stats.model';
+import { GAP_SEVERITY_THRESHOLDS_MS } from 'src/modules/WorkforceActivity/constants/activity.constants';
+import { GAP_SEVERITY, GapSeverity } from 'src/modules/WorkforceActivity/models/gap-severity.model';
+import { OffTaskGap } from 'src/modules/WorkforceActivity/models/off-task-gap.model';
+import { OffTaskGapStats } from 'src/modules/WorkforceActivity/models/off-task-gap-stats.model';
 
 export function getGapSeverity(durationMs: number): GapSeverity {
   if (durationMs <= GAP_SEVERITY_THRESHOLDS_MS.LOW_MAX) {

@@ -14,7 +14,7 @@ import {
 
 import { ACTIVITY_SEGMENT_LABELS } from '../../constants/segment.constants';
 import { TimelineSegment } from '../../models';
-import { formatDuration, formatEventDateTime } from '../../utils';
+import { formatDuration, formatEventDateTime } from 'src/shared/utils';
 
 import classes from './ScheduleEventsTable.module.scss';
 

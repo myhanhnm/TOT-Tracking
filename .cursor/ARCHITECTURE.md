@@ -38,7 +38,7 @@ UI components (no business logic in components)
 | Hooks | `.../hooks/` | Orchestration, context access |
 | Context | `.../context/ActivityContext.tsx` | In-memory app state + filters + schedule blocks |
 | Services | `.../services/` | Parse, analyze, filter, chart data, schedule storage |
-| Utils | `.../utils/` | Datetime, duration, gaps, severity, timeline merge |
+| Shared utils | `src/shared/utils/` | Datetime, duration, gaps, severity, timeline merge |
 | Models | `.../models/` | TypeScript types |
 | Shared UI | `src/components/` | EmptyState, LoadingState, ErrorState |
 | Theme | `src/theme/` | MUI theme config |
@@ -83,7 +83,7 @@ calculateSegmentTimeBreakdown()          → metrics per associate
 ShiftUtilization (stored in analysis.shiftUtilizations[loginId])
 ```
 
-Key function: `utils/timelineMerge.ts` → `applyScheduleBlocksToTimeline(segments, scheduleBlocks)`
+Key function: `src/shared/utils/timelineMerge.ts` → `applyScheduleBlocksToTimeline(segments, scheduleBlocks)`
 
 Schedule blocks resolved per unique calendar date in the timeline, then clipped to shift bounds.
 

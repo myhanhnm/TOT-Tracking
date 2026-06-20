@@ -1,7 +1,7 @@
 import { useActivityContext } from '../context';
 import { ActivityAnalysisService } from '../services';
 import { AssociateSummary, OffTaskGap, OffTaskGapStats, ShiftUtilization, TimelineSegment } from '../models';
-import { computeOffTaskGapStats, getScheduledSegments } from '../utils';
+import { computeOffTaskGapStats, getScheduledSegments } from 'src/shared/utils';
 
 type UseAssociateDetailParams = {
   loginId: string;

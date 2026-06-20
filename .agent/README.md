@@ -45,6 +45,8 @@ Attach via `Page.getLayout`.
 
 Each `src/layouts/<Layout>/` folder has **exactly 3 files** (`Layout.tsx`, `Layout.module.scss`, `index.ts`). Header, footer, and sidebar chrome belong in `src/components/` — not nested under layouts.
 
+Reusable utilities belong in `src/shared/utils/`, not `src/modules/<Feature>/utils/`, when they may serve multiple features.
+
 ---
 
 # Usage
@@ -117,6 +119,7 @@ AI agents must:
 - use **Pages Router only** — never `src/app/` or App Router patterns
 - use **`PublicLayout` / `PrivateLayout`** — never custom shells like `AppShell`; no-auth apps use `PublicLayout` only
 - keep layout folders to **3 files**; put `PublicHeader` and similar chrome in `src/components/`
+- put reusable utilities in `src/shared/utils/` (not `src/modules/<Feature>/utils/` unless strictly feature-local)
 - keep pages thin
 - keep feature logic inside modules
 - use `src/` imports

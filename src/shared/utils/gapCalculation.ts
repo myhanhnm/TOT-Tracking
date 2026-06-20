@@ -1,6 +1,6 @@
-import { OFF_TASK_GAP_THRESHOLD_MS } from '../constants';
-import { OffTaskGap } from '../models';
-import { ScanEvent } from '../models/scan-event.model';
+import { OFF_TASK_GAP_THRESHOLD_MS } from 'src/modules/WorkforceActivity/constants/activity.constants';
+import { OffTaskGap } from 'src/modules/WorkforceActivity/models';
+import { ScanEvent } from 'src/modules/WorkforceActivity/models/scan-event.model';
 
 export function calculateGapDurationMs(previousEvent: ScanEvent, currentEvent: ScanEvent): number {
   return currentEvent.eventTime.getTime() - previousEvent.eventTime.getTime();

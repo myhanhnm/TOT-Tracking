@@ -1,4 +1,4 @@
-import { ActivitySegmentStatus } from '../models/activity-segment.model';
+import { ActivitySegmentStatus } from 'src/modules/WorkforceActivity/models/activity-segment.model';
 
 export const SEGMENT_STATUS_CSS_CLASS: Record<ActivitySegmentStatus, string> = {
   ACTIVE: 'segment--active',

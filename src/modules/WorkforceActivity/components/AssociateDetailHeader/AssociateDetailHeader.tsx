@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import { AssociateSummary } from '../../models';
-import { formatDuration, formatUtilizationPercent } from '../../utils';
+import { formatDuration, formatUtilizationPercent } from 'src/shared/utils';
 
 import classes from './AssociateDetailHeader.module.scss';
 

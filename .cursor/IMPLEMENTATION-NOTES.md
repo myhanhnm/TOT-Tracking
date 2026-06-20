@@ -32,9 +32,9 @@ Associate detail uses `loginId` in context, not URL params. Deep-linking to an a
 | `ActivityFilterService` | Filter scan events, extract filter options |
 | `ActivityChartService` / `ActivityRankingService` | Chart and ranking data shaping |
 | `ScheduleBlockStorageService` | `localStorage` read/write for schedule blocks |
-| `utils/timelineMerge.ts` | `applyScheduleBlocksToTimeline` — core overlay logic |
-| `utils/scheduleBlockTime.ts` | Resolve `HH:mm` blocks to absolute dates per calendar day |
-| Other utils | Duration format, severity, utilization |
+| `src/shared/utils/timelineMerge.ts` | `applyScheduleBlocksToTimeline` — core overlay logic |
+| `src/shared/utils/scheduleBlockTime.ts` | Resolve `HH:mm` blocks to absolute dates per calendar day |
+| Other shared utils | Duration format, severity, utilization |
 
 ### filteredAnalysis vs raw analysis
 
@@ -104,7 +104,7 @@ Active app uses paths listed in `FEATURE-MAP.md`.
 ## When extending
 
 1. Read `BUSINESS-RULES.md` first
-2. Add models → utils/services → hooks → components (in that order)
+2. Add models → `src/shared/utils/` (if reusable) + services → hooks → components (in that order)
 3. Keep components presentational
 4. Wire new calculations through `ActivityAnalysisService.analyze` so filters and schedule blocks stay consistent
 5. Match existing minimalist UI patterns

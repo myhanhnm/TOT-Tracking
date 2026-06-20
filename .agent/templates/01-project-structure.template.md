@@ -411,7 +411,11 @@ Use this folder for:
 
 Layouts may contain:
 
-- layout shell structure and composition only
+- header
+- footer
+- sidebar
+- navigation
+- layout-level responsive behavior
 
 Layouts must not:
 
@@ -539,7 +543,17 @@ src/components/
 
 Do not move logic into `shared` too early.
 
-Only move something to `shared` when:
+Move utilities to `src/shared/utils/` when:
+
+- they are generic helpers (datetime, formatting, pagination, notify, etc.)
+- they are intended for reuse across modules (even if only one module uses them today)
+- promoting them avoids duplication as the app grows
+
+Keep utilities inside `src/modules/<Feature>/utils/` only when they are **strictly** single-feature mappers or glue with no realistic cross-module reuse.
+
+When shared utils depend on domain types, co-locate or move those types to `src/shared/models/` so `shared` does not import from `modules`.
+
+Only move other shared concerns when:
 
 - it is used by at least two modules
 - it is not strongly tied to one domain
@@ -646,11 +660,12 @@ src/modules/<ModuleName>/
 ├── hooks/
 ├── models/
 ├── constants/
-├── utils/
 ├── <ModuleName>.tsx
 ├── <module-name>.module.scss
 └── index.ts
 ```
+
+Optional `utils/` only for strictly module-local mappers. Reusable utilities belong in `src/shared/utils/`.
 
 Example:
 
@@ -671,8 +686,6 @@ src/modules/Books/
 │   └── index.ts
 ├── constants/
 │   └── books.constants.ts
-├── utils/
-│   └── books.mapper.ts
 ├── Books.tsx
 ├── books.module.scss
 └── index.ts
@@ -867,7 +880,7 @@ Keep local:
 ```txt
 modules/Books/components/BookCard
 modules/Books/hooks/useGetBooks
-modules/Books/utils/bookMapper.ts
+modules/Books/utils/bookMapper.ts   # only if strictly feature-local
 ```
 
 Move global:
@@ -876,6 +889,7 @@ Move global:
 components/Card
 hooks/useDebounce
 shared/utils/formatCurrency.ts
+shared/utils/datetime.ts
 shared/constants/appRoutes.ts
 ```
 

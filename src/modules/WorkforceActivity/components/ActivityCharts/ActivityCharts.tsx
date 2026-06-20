@@ -14,7 +14,7 @@ import {
 
 import { TOP_ASSOCIATES_CHART_LIMIT } from '../../constants';
 import { AssociateSummary } from '../../models';
-import { durationToMinutes, formatDuration } from '../../utils';
+import { durationToMinutes, formatDuration } from 'src/shared/utils';
 
 import classes from './ActivityCharts.module.scss';
 

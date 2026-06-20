@@ -183,8 +183,10 @@ Examples:
 ```txt
 src/components/
 src/hooks/
-src/shared/
+src/shared/          # constants, enums, models, types, utils
 ```
+
+`src/shared/utils/` holds cross-module or promotable utilities (datetime, formatting, timeline helpers, API helpers). Module `utils/` is only for strictly feature-local mappers.
 
 These should contain generic reusable logic only.
 

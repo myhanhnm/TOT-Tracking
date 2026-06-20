@@ -1,6 +1,6 @@
 import { TOP_ASSOCIATES_CHART_LIMIT } from '../constants';
 import { AssociateSummary, ChartDatum, OffTaskGap } from '../models';
-import { durationToMinutes, formatDuration } from '../utils';
+import { durationToMinutes, formatDuration } from 'src/shared/utils';
 
 function truncateName(name: string, maxLength = 14): string {
   if (name.length <= maxLength) {

@@ -17,6 +17,7 @@ src/
 ├── layouts/PublicLayout/   # 3 files only — shell via getLayout
 ├── modules/WorkforceActivity/  # Entire MVP feature
 ├── shared/constants/       # Minimal shared constants
+├── shared/utils/           # Reusable utilities (datetime, gaps, timeline merge)
 ├── styles/                 # Global SCSS + Tailwind entry
 └── theme/                  # MUI theme (Geist fonts)
 ```
@@ -29,18 +30,21 @@ src/modules/WorkforceActivity/
 ├── hooks/
 ├── models/
 ├── services/
-├── utils/
-├── constants/              # thresholds, CSV, filters, schedule, segment labels
+├── constants/
 ├── context/
 ├── WorkforceActivity.tsx
 └── WorkforceActivity{Upload,Dashboard,AssociateDetail}.tsx
 ```
 
+Reusable utilities live in `src/shared/utils/` (not inside the module).
+
 ## Import direction
 
 ```txt
-app → modules → components / hooks / services / utils / models
+app → modules → shared / components / hooks / services / models
 ```
+
+`src/shared/utils/` must not create circular imports — if utils need domain types, keep types in `src/shared/models/` or accept a temporary import from the owning module.
 
 ## Inactive (ignore / do not extend)
 

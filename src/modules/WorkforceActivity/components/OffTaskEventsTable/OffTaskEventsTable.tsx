@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 
 import { GAP_SEVERITY, GapSeverity, OffTaskGap } from '../../models';
-import { formatDuration, formatEventDateTime, getGapSeverity } from '../../utils';
+import { formatDuration, formatEventDateTime, getGapSeverity } from 'src/shared/utils';
 
 import classes from './OffTaskEventsTable.module.scss';
 

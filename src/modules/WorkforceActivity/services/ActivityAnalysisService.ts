@@ -8,8 +8,8 @@ import {
   WorkforceMetrics,
 } from '../models';
 import { ScheduleBlock } from '../models/schedule-block.model';
-import { calculateScanRatePerHour } from '../utils/utilization';
-import { buildShiftUtilization, getOffTaskSegments } from '../utils/timelineSegments';
+import { calculateScanRatePerHour } from 'src/shared/utils/utilization';
+import { buildShiftUtilization, getOffTaskSegments } from 'src/shared/utils/timelineSegments';
 
 type AssociateKey = {
   loginId: string;

@@ -785,6 +785,7 @@ When applying this template to a specific repo, generate a repo-specific doc wit
 |-------|-----------|
 | Routing | **Pages Router only** — `src/pages/`, no `src/app/` |
 | Layouts | `PublicLayout` only (no auth, no `PrivateLayout`) |
+| Shared utils | `src/shared/utils/` — activity datetime, gaps, timeline merge |
 | API layer | Not used — client-side CSV analysis only |
 | Auth | Not used |
 | Entry | `src/pages/index.tsx` → `WorkforceActivity` module |
