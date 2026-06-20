@@ -1,468 +1,274 @@
-# Frontend Boilerplate
+# TOT-Tracking
 
-A scalable frontend boilerplate built with:
+**Workforce Activity Analytics** — a client-side dashboard for warehouse supervisors to analyze associate scan activity from AWS QuickSight CSV exports.
 
-- Next.js Pages Router
-- TypeScript
-- MUI
-- Tailwind CSS
-- SCSS Modules
-- TanStack Query
-- react-hook-form + zod
-
-Designed for:
-
-- e-commerce platforms
-- booking systems
-- admin portals
-- content websites
-- hybrid mobile-web applications
+Upload a CSV, identify off-task time, configure breaks and meetings, and drill into per-associate shift timelines. No backend, no database, no login required.
 
 ---
 
-# Features
+## What it does
 
-- Feature/module-first architecture
-- Mobile-first responsive UI
-- Reusable UI component system
-- Centralized API layer
-- TanStack Query integration
-- MUI design system
-- Tailwind + SCSS Modules styling architecture
-- RHF + zod form handling
-- Authentication-ready architecture
-- Layout-based route structure
-- AI-agent-friendly engineering standards
+This MVP answers five daily supervisor questions:
 
----
+1. **Who has the most off-task time?**
+2. **Who is the most productive?**
+3. **When did off-task events happen?**
+4. **How much time was lost?**
+5. **What happened during an associate's shift?**
 
-# Tech Stack
+### Core workflow
 
-## Core
+1. **Upload** — Drag and drop a QuickSight CSV export
+2. **Dashboard** — Review workforce metrics, rankings, charts, and filters
+3. **Associate detail** — Inspect a single associate's timeline, off-task events, and scheduled breaks
 
-- Next.js Pages Router
-- React
-- TypeScript
+### Features
 
----
+| Area | Capability |
+|------|------------|
+| **CSV analysis** | Parse scan events, detect gaps between consecutive scans per associate |
+| **Off-task detection** | Flag gaps greater than 10 minutes as off-task |
+| **Schedule blocks** | Configure paid breaks, lunch, and meetings; overlay on timeline (saved in `localStorage`) |
+| **Filters** | Date, associate name, login ID, function, process, unit class, search |
+| **Metrics** | Active time, off-task time, paid/unpaid break, meeting time, utilization %, scan rate |
+| **Rankings** | Top off-task, top utilized, top scan volume associates |
+| **Charts** | Top 10 off-task, top 10 scan volume, utilization distribution, gap duration distribution |
+| **Timeline** | 5 segment types (active, off-task, paid break, unpaid break, meeting) with zoom presets |
+| **Tables** | Sortable associate list, off-task events (with severity), schedule events |
 
-## UI
+### Data handling
 
-- MUI
-- Tailwind CSS
-- SCSS Modules
-- Framer Motion
-
----
-
-## Data & Forms
-
-- TanStack Query
-- react-hook-form
-- zod
+- **CSV data** — Processed entirely in the browser; held in memory until page refresh
+- **Schedule blocks** — Persisted in `localStorage` across sessions
+- **No server** — Nothing is uploaded to a backend; suitable for sensitive workforce data kept on-device
 
 ---
 
-## Utilities
+## Tech stack
 
-- classnames / clsx
-- date-fns / dayjs (project-dependent)
+| Layer | Technology |
+|-------|------------|
+| Framework | [Next.js 16](https://nextjs.org/) (App Router) |
+| Language | TypeScript (strict) |
+| UI | [MUI v7](https://mui.com/) + [Tailwind CSS](https://tailwindcss.com/) + SCSS modules |
+| Charts | [Recharts](https://recharts.org/) |
+| CSV parsing | [PapaParse](https://www.papaparse.com/) |
+| Dates | [date-fns](https://date-fns.org/) |
+| Fonts | Geist Sans, Geist Mono (`next/font`) |
+
+### Architecture (summary)
+
+```txt
+CSV → ActivityParserService → ActivityAnalysisService (+ schedule blocks)
+    → ActivityContext (filteredAnalysis)
+    → hooks → presentational components
+```
+
+- Single route: `/`
+- Three client views (no URL routing): `upload` | `dashboard` | `associate`
+- Business logic in `src/modules/WorkforceActivity/services/` and `utils/`
+- UI components do not parse CSV or calculate metrics
+
+See [`.cursor/ARCHITECTURE.md`](.cursor/ARCHITECTURE.md) for full agent/developer documentation.
 
 ---
 
-# Quick Start
+## Prerequisites
 
-## Install dependencies
+- **Node.js** 18.x or 20.x (LTS recommended)
+- **npm** 9+
+
+---
+
+## Local development
+
+### 1. Install dependencies
 
 ```bash
 npm install
 ```
 
----
-
-## Start development server
+### 2. Start the dev server
 
 ```bash
 npm run dev
 ```
 
----
+Open [http://localhost:3000](http://localhost:3000).
 
-## Build production
+### 3. Try sample data
+
+Upload the included sample file:
+
+```txt
+sample-data/workforce-activity-sample.csv
+```
+
+### 4. Build for production
 
 ```bash
 npm run build
-```
-
----
-
-## Start production server
-
-```bash
 npm run start
 ```
 
+### Available scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Create production build |
+| `npm run start` | Serve production build |
+| `npm run lint` | Run ESLint |
+
 ---
 
-# Project Structure
+## CSV format
+
+Export from **AWS QuickSight** with these columns (header names are case-sensitive after trim):
+
+```txt
+LoginID, Associate Name, Function, Unit Class, Process, Event Time,
+ASIN, Reference, Size, Unit Type, Pack Flow, Pick Process Path, Units
+```
+
+Each row is one scan event. The app groups events by associate (`LoginID`), sorts by time, and calculates gaps between consecutive scans.
+
+Supported `Event Time` formats include `yyyy-MM-dd HH:mm:ss` and common US date formats. See `src/modules/WorkforceActivity/utils/datetime.ts`.
+
+---
+
+## Business rules (summary)
+
+| Rule | Value |
+|------|-------|
+| Off-task threshold | Gap **> 10 minutes** between consecutive scans |
+| Severity (off-task only) | Low ≤15m · Medium ≤30m · High >30m |
+| Utilization | `Active Time / (Active Time + Off Task Time) × 100` |
+| Schedule overlay | Paid break, lunch, and meeting blocks split off-task gaps on the timeline |
+
+Breaks and meetings are **excluded** from the utilization denominator.
+
+Full rules: [`.cursor/BUSINESS-RULES.md`](.cursor/BUSINESS-RULES.md)
+
+---
+
+## Deploy on Vercel
+
+This app is a standard Next.js project with **no required environment variables** for the MVP.
+
+### Option A — Vercel Dashboard (recommended)
+
+1. Push the repository to GitHub, GitLab, or Bitbucket
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository
+3. Vercel auto-detects **Next.js** — leave defaults:
+   - **Build Command:** `npm run build`
+   - **Output Directory:** (default — Next.js)
+   - **Install Command:** `npm install`
+4. Click **Deploy**
+
+No environment variables are needed unless you add features later.
+
+### Option B — Vercel CLI
+
+```bash
+npm i -g vercel
+vercel login
+vercel
+```
+
+Follow the prompts. For production:
+
+```bash
+vercel --prod
+```
+
+### Deployment notes
+
+- **Static + SSR:** The app uses the App Router; Vercel handles Next.js builds natively
+- **No API routes** — Entire MVP runs client-side after the initial page load
+- **No secrets** — Do not add API keys unless you introduce a backend
+- **Node version:** Vercel uses Node 20.x by default; compatible with Next.js 16
+- **Custom domain:** Configure under Project → Settings → Domains in the Vercel dashboard
+
+### Optional environment variables
+
+`.env.example` only documents `NODE_ENV`. Vercel sets this automatically. No `NEXT_PUBLIC_` variables are required today.
+
+---
+
+## Project structure
 
 ```txt
 src/
-├── apis/
-├── components/
-├── configs/
-├── contexts/
-├── hooks/
-├── layouts/
-├── models/
-├── modules/
-├── pages/
-├── shared/
-├── styles/
-├── theme/
-└── utils/
+├── app/                          # Next.js App Router (layout, page, providers)
+├── components/                   # Shared UI (EmptyState, LoadingState, ErrorState)
+├── layouts/AppShell/             # App header and navigation
+├── modules/WorkforceActivity/    # Entire MVP feature module
+│   ├── components/               # Dashboard, timeline, filters, charts, tables
+│   ├── hooks/                    # useCsvUpload, useFilteredAnalysis, etc.
+│   ├── services/                 # Parser, analysis, filters, charts, schedule storage
+│   ├── utils/                    # Gaps, timeline merge, utilization, datetime
+│   ├── models/                   # TypeScript domain types
+│   ├── constants/                # Thresholds, CSV columns, schedule defaults
+│   └── context/                  # ActivityContext (state + filters + schedule blocks)
+├── styles/                       # Global SCSS + Tailwind entry
+└── theme/                        # MUI theme (Geist fonts)
+
+sample-data/
+└── workforce-activity-sample.csv # Demo CSV
+
+.cursor/                          # Agent/developer documentation (architecture, rules)
 ```
 
 ---
 
-# Architecture Philosophy
+## Screens
 
-## Thin Pages
+### Upload
 
-Pages inside:
+Drag-and-drop zone for QuickSight CSV files. Validates headers and parses rows client-side.
 
-```txt
-src/pages/
-```
+### Dashboard
 
-should remain thin wrappers.
+- Global filters (date, associate, login ID, function, process, unit class, search)
+- Workforce metric cards
+- Schedule block manager (add/edit/delete breaks and meetings)
+- Top associate ranking tables
+- Four Recharts visualizations
+- Full sortable associate table
 
-Pages should:
+### Associate detail
 
-- define route entry
-- optionally define SEO
-- optionally define `getLayout`
-- render feature module root
-
-Business logic should stay inside feature modules.
-
----
-
-## Feature-first Structure
-
-Feature/domain logic belongs inside:
-
-```txt
-src/modules/<Feature>
-```
-
-Example:
-
-```txt
-src/modules/
-├── Authentication/
-├── Products/
-├── Orders/
-├── Booking/
-```
-
-Each feature owns:
-
-- components
-- hooks
-- forms
-- schemas
-- models
-- constants
-- utilities
+- Summary header with utilization and time breakdown
+- Activity timeline (5 segment colors, zoom presets, hover tooltips)
+- Schedule events table (paid break, lunch, meeting)
+- Off-task summary cards and events table with severity chips
 
 ---
 
-## Shared Reusable UI
+## Limitations (MVP)
 
-Reusable generic UI belongs in:
-
-```txt
-src/components
-```
-
-Examples:
-
-```txt
-Button
-Card
-Modal
-Table
-Form
-LoadingState
-ErrorState
-```
-
-Feature-specific UI should remain inside feature modules.
+- No authentication or multi-user access control
+- No database — CSV data is lost on refresh
+- No URL deep-linking to a specific associate or filter state
+- Schedule blocks apply to **all associates** (`ALL_ASSOCIATES` only)
+- No export/report download
+- Legacy boilerplate files may exist on disk but are not used by the active app
 
 ---
 
-## API Layer
+## Documentation
 
-API clients belong in:
-
-```txt
-src/apis/
-```
-
-Components should NEVER call APIs directly.
-
-Query hooks:
-
-- use `useAppQuery`
-
-Mutation hooks:
-
-- use `useMutation`
+| Document | Description |
+|----------|-------------|
+| [`.cursor/README.md`](.cursor/README.md) | Agent handoff index |
+| [`.cursor/PROJECT-OVERVIEW.md`](.cursor/PROJECT-OVERVIEW.md) | Detailed project overview |
+| [`.cursor/BUSINESS-RULES.md`](.cursor/BUSINESS-RULES.md) | Domain logic and calculations |
+| [`.cursor/ARCHITECTURE.md`](.cursor/ARCHITECTURE.md) | Data flow and layer responsibilities |
+| [`.cursor/FEATURE-MAP.md`](.cursor/FEATURE-MAP.md) | File and component reference |
 
 ---
 
-# Styling System
+## License
 
-This boilerplate uses:
-
-```txt
-MUI            → design system + UI primitives
-Tailwind       → layout + utility classes
-SCSS Modules   → scoped styling
-MUI sx         → theme-aware one-off styling
-```
-
-Preferred styling pattern:
-
-```txt
-SCSS Modules + Tailwind @apply
-```
-
----
-
-# Routing Strategy
-
-- Next.js Pages Router
-- thin pages
-- `getLayout` pattern
-- centralized `APP_ROUTES`
-- layout-based auth structure
-
-Layouts live in:
-
-```txt
-src/layouts/
-```
-
----
-
-# State Management Strategy
-
-Preferred order:
-
-```txt
-Local state
-    ↓
-Feature state
-    ↓
-Context
-    ↓
-Zustand
-    ↓
-Redux
-```
-
-Use the simplest solution first.
-
----
-
-# Responsive Design
-
-All UI should be:
-
-- mobile-first
-- responsive by default
-- tablet-friendly
-- desktop-enhanced
-
-Avoid:
-
-- fixed desktop layouts
-- non-responsive components
-- desktop-only assumptions
-
----
-
-# Engineering Standards
-
-## Components
-
-- reusable UI → `src/components`
-- feature UI → `src/modules/<Feature>/components`
-- named exports only
-- avoid giant components
-
----
-
-## Forms
-
-- RHF + zod
-- schemas outside TSX
-- mutation-based submission
-- reusable `Control*` fields
-
----
-
-## APIs
-
-- centralized API clients
-- endpoint constants
-- typed requests/responses
-- normalized error handling
-
----
-
-## Styling
-
-- SCSS Modules + Tailwind `@apply`
-- MUI theme tokens
-- avoid raw hex colors
-- avoid feature global CSS
-
----
-
-## TypeScript
-
-- strict typing
-- avoid `any`
-- typed boundaries everywhere
-- feature-local ownership first
-
----
-
-# Environment Variables
-
-Environment access should be centralized.
-
-Recommended:
-
-```txt
-src/configs/environment.ts
-```
-
-Client variables must use:
-
-```txt
-NEXT_PUBLIC_
-```
-
----
-
-# Available Scripts
-
-| Script               | Description              |
-|----------------------|--------------------------|
-| `npm run dev`        | Start development server |
-| `npm run build`      | Build production app     |
-| `npm run start`      | Start production server  |
-| `npm run lint`       | Run ESLint               |
-| `npm run type-check` | Run TypeScript checks    |
-
----
-
-# AI Agent Support
-
-This boilerplate includes:
-
-```txt
-.ai/
-```
-
-which contains:
-
-- architecture templates
-- engineering conventions
-- AI generation rules
-- deterministic frontend patterns
-
-Recommended for:
-
-- Cursor
-- Claude Code
-- OpenAI agents
-- Copilot Workspace
-
----
-
-# Contributing
-
-Before contributing:
-
-1. Follow existing architecture patterns.
-2. Reuse existing components/hooks/utilities when possible.
-3. Keep feature logic inside modules.
-4. Avoid introducing new conventions unnecessarily.
-5. Keep components mobile-first and responsive.
-
----
-
-# Golden Rules
-
-- Components never call APIs directly
-- Pages stay thin
-- Feature logic stays inside modules
-- Shared UI remains generic
-- Prefer explicit architecture over hidden abstractions
-- Mobile-first by default
-
----
-
-# Anti-patterns
-
-Do NOT:
-
-- use `@/` imports
-- call APIs inside components
-- use raw `useQuery` in components
-- use Formik
-- create giant components
-- duplicate styling systems
-- create unnecessary Context
-- hardcode routes repeatedly
-- introduce new architecture patterns casually
-
----
-
-# Future AI System Extensions
-
-```txt
-.ai/
-├── templates/
-├── prompts/
-└── context/
-```
-
-Potential future additions:
-
-```txt
-.ai/prompts/
-├── create-feature.prompt.md
-├── create-page.prompt.md
-├── create-crud.prompt.md
-└── create-admin-module.prompt.md
-```
-
----
-
-# Goal
-
-This boilerplate is designed to remain:
-
-- scalable
-- predictable
-- reusable
-- mobile-friendly
-- production-grade
-- AI-agent-friendly
-- easy to extend across many projects
+Private project. All rights reserved unless otherwise specified by the repository owner.
